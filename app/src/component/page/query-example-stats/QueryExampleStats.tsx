@@ -16,7 +16,7 @@ function queryGetStats() {
 
 export default function QueryExampleStats() {
 
-    const { isLoading, error, data } = useQuery(['repoData'], queryGetStats, {
+    const { isLoading, error, data } = useQuery(['exampleStats'], queryGetStats, {
         placeholderData: {
             name: '',
             description: '',
