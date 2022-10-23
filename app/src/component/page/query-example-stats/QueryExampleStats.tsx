@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import React from 'react'
+import { useQuery } from '@tanstack/react-query'
 
-const debug = true;
+const debug = true
 
 const mockData = {
     name: 'Test',
@@ -15,21 +16,29 @@ async function queryGetStats() {
         setTimeout(() => {
             resolve(mockData)
         }, 1500)
-    });
+    })
+}
+
+type Stats = {
+    name: string
+    description: string
+    subscribers_count: number
+    stargazers_count: number
+    forks_count: number
+}
+
+const placeholderData:Stats = {
+    name: '',
+    description: '',
+    subscribers_count: 0,
+    stargazers_count: 0,
+    forks_count: 0
 }
 
 export default function QueryExampleStats() {
 
-    const { isLoading, error, data } = useQuery(['exampleStats'], queryGetStats, {
-        // An example of using type 'any' to hide type script warnings (this is not good)
-        // - better would be define a the data structure as a named type
-        placeholderData: {
-            name: '',
-            description: '',
-            subscribers_count: 0,
-            stargazers_count: 0,
-            forks_count: 0
-        } as any,
+    const { isInitialLoading, error, data } = useQuery(['exampleStats'], queryGetStats, {
+        placeholderData,
         onSuccess: (data) => {
             return debug ? console.log('onSuccess', data) : null
         },
@@ -38,20 +47,24 @@ export default function QueryExampleStats() {
         }
     });
 
-    if (isLoading) return (
+    // cast unknown data type from useQuery
+    const stats = data as Stats;
+
+    const loadStatus = (isInitialLoading) ? (
         <span>{'Loading...'}</span>
-    )
+    ) : null;
     if (error instanceof Error) return (
         <span>{'An error has occurred: ' + error.message}</span>
     )
 
-    return data ? (
+    return !isInitialLoading ? (
         <div>
-            <h1>{data.name}</h1>
-            <p>{data.description}</p>
-            <strong>👀 {data.subscribers_count}</strong>{' '}
-            <strong>✨ {data.stargazers_count}</strong>{' '}
-            <strong>🍴 {data.forks_count}</strong>
+            {loadStatus}
+            <h1>{stats.name}</h1>
+            <p>{stats.description}</p>
+            <strong>👀 {stats.subscribers_count}</strong>{' '}
+            <strong>✨ {stats.stargazers_count}</strong>{' '}
+            <strong>🍴 {stats.forks_count}</strong>
         </div>
     ) : null;
 }
