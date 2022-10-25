@@ -9,11 +9,11 @@ export type StatsData = {
 
 export class Stats
 {
-    name: string = ''
-    description: string = ''
-    subscribers_count: number = 0
-    stargazers_count: number = 0
-    forks_count: number = 0
+    public name: string = ''
+    public description: string = ''
+    public subscribers_count: number = 0
+    public stargazers_count: number = 0
+    public forks_count: number = 0
 
     constructor(data: StatsData|null = null) {
         this.name = data && data.name ? data.name : '';
