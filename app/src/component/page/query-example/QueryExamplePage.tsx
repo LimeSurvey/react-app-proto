@@ -1,7 +1,6 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { exampleStatsQueryGet } from '../../../model/query/ExampleStatsQuery'
-import { Stats } from '../../../model/constructor/Stats'
 
 const debug = true
 
@@ -28,5 +27,5 @@ export default function QueryExamplePage() {
             <strong>✨ {data.stargazers_count}</strong>{' '}
             <strong>🍴 {data.forks_count}</strong>
         </div>
-    ) : null;
+    ) : null
 }
