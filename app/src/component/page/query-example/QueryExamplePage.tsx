@@ -25,9 +25,6 @@ export default function QueryExamplePage() {
         }
     });
 
-    // cast unknown data type from useQuery
-    const stats = data as Stats;
-
     const loadStatus = (isInitialLoading) ? (
         <span>{'Loading...'}</span>
     ) : null;
@@ -35,14 +32,14 @@ export default function QueryExamplePage() {
         <span>{'An error has occurred: ' + error.message}</span>
     )
 
-    return !isInitialLoading ? (
+    return !isInitialLoading && data ? (
         <div>
             {loadStatus}
-            <h1>{stats.name}</h1>
-            <p>{stats.description}</p>
-            <strong>👀 {stats.subscribers_count}</strong>{' '}
-            <strong>✨ {stats.stargazers_count}</strong>{' '}
-            <strong>🍴 {stats.forks_count}</strong>
+            <h1>{data.name}</h1>
+            <p>{data.description}</p>
+            <strong>👀 {data.subscribers_count}</strong>{' '}
+            <strong>✨ {data.stargazers_count}</strong>{' '}
+            <strong>🍴 {data.forks_count}</strong>
         </div>
     ) : null;
 }
