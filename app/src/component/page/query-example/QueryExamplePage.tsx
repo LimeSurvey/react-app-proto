@@ -1,43 +1,21 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { exampleStatsQueryGet } from '../../../model/query/ExampleStatsQuery'
+import { Stats } from '../../../model/constructor/Stats'
 
 const debug = true
 
-const mockData = {
-    name: 'Test',
-    description: 'Test description',
-    subscribers_count: 25432,
-    stargazers_count: 73,
-    forks_count: 1245
-}
-
-async function queryGetStats() {
-    return new Promise((resolve, _reject) => {
-        setTimeout(() => {
-            resolve(mockData)
-        }, 1500)
-    })
-}
-
-type Stats = {
-    name: string
-    description: string
-    subscribers_count: number
-    stargazers_count: number
-    forks_count: number
-}
-
-const placeholderData:Stats = {
+const placeholderData = new Stats({
     name: '',
     description: '',
     subscribers_count: 0,
     stargazers_count: 0,
     forks_count: 0
-}
+})
 
-export default function QueryExampleStats() {
+export default function QueryExamplePage() {
 
-    const { isInitialLoading, error, data } = useQuery(['exampleStats'], queryGetStats, {
+    const { isInitialLoading, error, data } = useQuery(['exampleStats'], exampleStatsQueryGet, {
         placeholderData,
         onSuccess: (data) => {
             return debug ? console.log('onSuccess', data) : null

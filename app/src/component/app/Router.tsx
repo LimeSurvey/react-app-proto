@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import PageEditor from '../page/editor/Editor'
-import PageStats from '../page/query-example-stats/QueryExampleStats'
+import QueryExamplePage from '../page/query-example/QueryExamplePage'
 
 const router = createBrowserRouter([
     {
@@ -12,8 +12,8 @@ const router = createBrowserRouter([
         element: <PageEditor />
     },
     {
-        path: '/query-example-stats',
-        element: <PageStats />
+        path: '/query-example',
+        element: <QueryExamplePage />
     }
 ])
 
