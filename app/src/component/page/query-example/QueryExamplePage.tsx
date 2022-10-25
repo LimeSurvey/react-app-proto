@@ -6,7 +6,7 @@ const debug = true
 
 export default function QueryExamplePage() {
 
-    const { isInitialLoading, error, data } = useQuery(['exampleStats'], exampleStatsQueryGet, {
+    const { isInitialLoading, error, data } = useQuery(['exampleStatsQueryGet'], exampleStatsQueryGet, {
         onSuccess: (data) => {
             return debug ? console.log('onSuccess', data) : null
         }
