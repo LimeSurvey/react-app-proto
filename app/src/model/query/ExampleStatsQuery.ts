@@ -1,4 +1,4 @@
-import { Stats, StatsData } from '../constructor/Stats'
+import { Stats } from '../constructor/Stats'
 
 const mockData = new Stats({
     name: 'Test',
