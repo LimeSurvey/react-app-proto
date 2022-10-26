@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
-import PageEditor from '../page/editor/Editor'
-import HomePage from '../page/home/HomePage'
-import QueryExamplePage from '../page/query-example/QueryExamplePage'
+import EditorPage from './page/editor/EditorPage'
+import HomePage from './page/home/HomePage'
+import QueryExamplePage from './page/query-example/QueryExamplePage'
 
 const router = createBrowserRouter([
     {
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/editor',
-        element: <PageEditor />
+        element: <EditorPage />
     },
     {
         path: '/query-example',
