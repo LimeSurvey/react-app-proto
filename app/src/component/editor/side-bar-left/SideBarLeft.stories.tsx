@@ -4,7 +4,7 @@ import './SideBarLeft.scss';
 import SideBarLeft from './SideBarLeft';
 
 export default {
-  title: 'SideBarLeft',
+  title: 'Editor/SideBarLeft',
   component: SideBarLeft,
 } as ComponentMeta<typeof SideBarLeft>;
 

@@ -7,7 +7,7 @@ import './Content.scss';
 import Content from './Content';
 
 export default {
-  title: 'Content',
+  title: 'Editor/Content',
   component: Content,
 } as ComponentMeta<typeof Content>;
 
