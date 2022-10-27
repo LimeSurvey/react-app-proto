@@ -7,12 +7,13 @@ import Col from 'react-bootstrap/Col'
 import { PlusLg, ListNested } from 'react-bootstrap-icons'
 import classNames from 'classnames'
 
+export type TopBarProps = {siteName?:string};
 
-function TopBar() {
+export const TopBar: React.FC<TopBarProps> = (props) => {
     return (
         <Row className={classNames('top-bar', 'border')}>
             <Col className={classNames('d-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1')}>
-                <span className={classNames('p-2')}>{'Limesurvey'}</span>
+                <span className={classNames('p-2')}>{props.siteName ?? 'LimeSurvey'}</span>
                 <span>
                     <Button variant="dark" size="sm" className={classNames('m-1')}>
                         <PlusLg />

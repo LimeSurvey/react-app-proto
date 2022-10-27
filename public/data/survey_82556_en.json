@@ -1,0 +1,4801 @@
+{
+  "questionnaire": {
+    "title": "Sample LimeSurvey for 1.92+",
+    "investigator": "",
+    "dataCollector": "",
+    "questionnaireInfo": [
+      {
+        "position": "before",
+        "text": "This demo shows the main capabilities of ExpressionManager, including:\nDynamic tailoring of question text, including real-time Assessments.  This includes access to a dozen question attributes so that you can show print-answer-like reports mid-survey\nDynamic control of question visibility via Relevance - like dynamic, complex Conditions\nFlagging irrelevant questions as Not Applicable (they get NULLed in the database)\nCascading relevance - since irrelevant questions have their responses blanked out, relevance conditions can be cascaded by checking whether any single predecessor has a valid response.\nRefer to questions by the SPSS/R variable_label (title/code) or via SGQA code\nNavigation Index that lets you jump backwards, change answers, then safely jump forwards again (it will re-compute and  validate everything in between)\nDefault Values (group All Question Types) - Note that if questions with default values become irrelevant, are saved, then become relevant again, the default values are restored\nEnhanced development and debugging tools - e.g. from admin mode, select 'Survey Logic File' to see one-page view of all question/subquestion/answer text, conditions, attributes, relevance, validation, and tailoring; and click on any variable name to open a new window to edit that question or group.\n&lt;p&gt;\nPlease be sure to change your answers on the page, and navigate back and forth to see how it changes which questions you see and what they say.&lt;/p&gt;",
+        "administration": "self"
+      },
+      {
+        "position": "after",
+        "text": "Thanks for trying this demo!",
+        "administration": "self"
+      }
+    ],
+    "section": [
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Dynamic, On-page Report Generation",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "After saying where you live, watch how your answers dynamically change the reports at the bottom of the page.",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "Here is a double-check that INSERTANS:xxx works as expected.\n\n\n\t\t\t\tVar\n\t\t\t\n\t\t\t\tSGQA\n\t\t\t\n\t\t\t\tINSERTANS:SGQA\n\t\t\n\t\t\t\tcity\n\t\t\t\n\t\t\t\t82556X10X104\n\t\t\t\n\t\t\t\t82556X10X104, INSERTANS:82556X10X104\n\t\t\n\t\t\t\tyearsThere\n\t\t\t\n\t\t\t\t82556X10X105\n\t\t\t\n\t\t\t\t82556X10X105, INSERTANS:82556X10X105\n\t\t\n\t\t\t\tranking_2\n\t\t\t\n\t\t\t\t82556X10X1062\n\t\t\t\n\t\t\t\t82556X10X1062, INSERTANS:82556X10X1062\n\t\t\n\t\t\t\topinions_srv\n\t\t\t\n\t\t\t\t82556X10X107srv\n\t\t\t\n\t\t\t\t82556X10X107srv, INSERTANS:82556X10X107srv\n\t\t\n\t\t\t\tworries_smog_0\n\t\t\t\n\t\t\t\t82556X10X108smog#0\n\t\t\t\n\t\t\t\t82556X10X108smog#0, INSERTANS:82556X10X108smog#0\n\t\t\n\t\t\t\tworries_trans_1\n\t\t\t\n\t\t\t\t82556X10X108trans#1\n\t\t\t\n\t\t\t\t82556X10X108trans#1, INSERTANS:82556X10X108trans#1\n\t\t&lt;p&gt;\n\t &lt;/p&gt;",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": "What city do you live in?",
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 24,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How long have you lived in  (years)?",
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "Which do you like best about ?",
+            "subQuestion": [
+              {
+                "text": "Sporting Events"
+              },
+              {
+                "text": "Cultural Events"
+              },
+              {
+                "text": "Religious Events"
+              },
+              {
+                "text": "Political Events"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 1,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How should the following change in ?",
+            "subQuestion": [
+              {
+                "text": "Taxes"
+              },
+              {
+                "text": "Services"
+              },
+              {
+                "text": "Events"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Increase",
+                    "value": "I"
+                  },
+                  {
+                    "label": "Same",
+                    "value": "S"
+                  },
+                  {
+                    "label": "Decrease",
+                    "value": "D"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "How bad off is  on these issues, and how much do you worry about them?",
+              "Severity"
+            ],
+            "subQuestion": [
+              {
+                "text": "Property Tax rate"
+              },
+              {
+                "text": "Smog"
+              },
+              {
+                "text": "Transportation"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Mild Severity",
+                    "value": "s1"
+                  },
+                  {
+                    "label": "Moderate Severity",
+                    "value": "s2"
+                  },
+                  {
+                    "label": "Extreme Severity",
+                    "value": "s3"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "How bad off is  on these issues, and how much do you worry about them?",
+              ""
+            ],
+            "subQuestion": [
+              {
+                "text": "Property Tax rate"
+              },
+              {
+                "text": "Smog"
+              },
+              {
+                "text": "Transportation"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Mild Bothersomeness",
+                    "value": "b1"
+                  },
+                  {
+                    "label": "Moderate Bothersomeness",
+                    "value": "b2"
+                  },
+                  {
+                    "label": "Extreme Bothersomeness",
+                    "value": "b3"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "Here is what you said about , where you have lived for  years:\n\n#QuestionCodeValueShown104What city do you live in?105How long have you lived in  (years)?106Rank 1106Rank 2106Rank 3106Rank 4107Taxes107Services107Events108Property Tax rate[Scale 1]108Property Tax rate[Scale 2]108Smog[Scale 1]108Smog[Scale 2]108Transportation[Scale 1]108Transportation[Scale 2]\nIs this correct?",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Yes",
+                    "value": "Y"
+                  },
+                  {
+                    "label": "No",
+                    "value": "N"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Dynamic Math Display",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "Shows the syntax of all of the currently available math function.  Change the values for num and num2 to show how its results change.\nPlease make sure that &lt;b&gt;num&lt;/b&gt; is less than &lt;b&gt;num2&lt;/b&gt;, otherwise you won't be able to answer some of the validation tests.\nAlso, in order to see the Dynamic Relevance page, the value for &lt;b&gt;num&lt;/b&gt; must be greater than 10.",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "FunctionSyntaxResultAbsolute valueabs()Arc cosineacos()Arc sineasin()Arc tangent of two variablesatan2(,)Arc tangentatan()Round fractions upceil()Cosinecos()Calculates the exponent of eexp()Round fractions downfloor()Finds whether a value is not a numberis_nan()Natural logarithmlog()Get value of pipi()3.1415926535898Exponential expressionpow(,)Generate a random integerrand()929865660Rounds a floatround()Sinesin()Square rootsqrt()Calculate the sum of values in an arraysum()Tangenttan()Find lowest valuemin(,,+,-,*,/2)Find highest valuemax(,,+,-,*,/2)Sumsum(,,+,-,*,/2)Join array elements with a stringimplode('~',,,+,-,*,/2)~~~NAN~NAN~NANGet the integer value of a variableintval()Finds whether the type of a variable is floatis_float()Finds whether the type of a variable is integeris_int()Finds whether the type of a variable is NULLis_null()Finds whether a variable is a number or a numeric stringis_numeric()Finds whether the type of a variable is stringis_string()1Determine whether a variable is considered to be emptyis_empty()1",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "Please make sure that  the first number (&lt;b&gt;num&lt;/b&gt;) is less than the second number (&lt;b&gt;num2&lt;/b&gt;), otherwise you will not be able to answer some of the validation tests.",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "Since &lt;b&gt;num&lt;/b&gt; is less than 10, you will not be able to see the Dynamic Relevance page; and since that page asks your age, you will not be able to complete the validation questions later in the survey, that depend upon your age.",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": "Enter a number",
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 24,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "Enter another number",
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 24,
+                "label": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Dynamic Relevance",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "Shows how Relevance can be change question visibility (e.g. dynamic branching).\nThis page is only shown when &lt;b&gt;num&lt;/b&gt; from the previous page is greater than 10.  It's current value is {num}.\nYou must enter values for &lt;b&gt;age&lt;/b&gt; and &lt;b&gt;yearsMarried&lt;/b&gt; in order to complete some of the Validation Tests later in this survey; and &lt;b&gt;age&lt;/b&gt; must be greater than &lt;b&gt;yearsMarried&lt;/b&gt;.",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "Please enter some information about yourselfif(is_empty(name), '', if(is_empty(age), 'How old are you?', implode(' ', 'So, you are', age, 'years old.  Funny, you don'tlookit. ' )))",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "You must enter values for &lt;b&gt;age&lt;/b&gt; and &lt;b&gt;yearsMarried&lt;/b&gt; in order to complete some of the Validation Tests later in the survey.\nIn order to enter age, you must enter your name.  In order to enter yearsMarried, you must say you are more than 5 years old.",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "You say that you are  years old,  but that you have been married for   years.  Sorry, past lives don't count.\nPlease correct this or you won't be able to pass some of the Validation Tests later in this survey.",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": "Do you want to display any of the questions on the All Question Types page?",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Yes",
+                    "value": "Y"
+                  },
+                  {
+                    "label": "No",
+                    "value": "N"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "What is your name?",
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 24,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How old are you?",
+            "directive": {
+              "position": "during",
+              "text": "Only asked if you provide a name",
+              "administration": "self"
+            },
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "Are you married?",
+            "directive": {
+              "position": "during",
+              "text": "Only asked if age &gt; 5 (and one hopes much older)",
+              "administration": "self"
+            },
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Yes",
+                    "value": "Y"
+                  },
+                  {
+                    "label": "No",
+                    "value": "N"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "How many years have you been married, ?",
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How many children do you have?",
+            "directive": {
+              "position": "during",
+              "text": "Only asked if your age is &gt; 11 (and one hopes much older)",
+              "administration": "self"
+            },
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How old is your first child?",
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How old is your second child?",
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How old is your third child?",
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How old is your fourth child?",
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How old is your fifth child?",
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Hidden Equations",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "This group should never appear",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "This is a hidden message",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": 1,
+            "directive": {
+              "position": "during",
+              "text": "This is a hidden equation",
+              "administration": "self"
+            }
+          },
+          {
+            "text": 6.1232339957368e-17,
+            "directive": {
+              "position": "during",
+              "text": "This is a conditional equation",
+              "administration": "self"
+            }
+          },
+          {
+            "text": "A hidden question - starts with NULL?",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": 1,
+                    "value": 1
+                  },
+                  {
+                    "label": 2,
+                    "value": 2
+                  },
+                  {
+                    "label": 3,
+                    "value": 3
+                  },
+                  {
+                    "label": 4,
+                    "value": 4
+                  },
+                  {
+                    "label": 5,
+                    "value": 5
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "All Question Types",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "Collect some data from all question types so can validate ExpressionManager's ability to work with it.  Note that all question types that support default values have a default value set.",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "&lt;p&gt;This is just a text display.  Is the rendered value saved anywhere?  Is there a database field for it (e.g. to emulate the Equation question type)?&lt;/p&gt;",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": "Which question types do you  want to display?",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "q5pointChoice",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qListDropdown",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qListRadio",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qListWithComment",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qArray",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qArray10Point",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qArray5Point",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qArrayISD",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qArrayNumbers",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qArrayTexts",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qArrayYNU",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qArrayByColumn",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qArrayDualScale",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qDate",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qFileUpload",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qGender",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qLanguage",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qMultipleNumerical",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qNumerical",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qRanking",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qTextDisplay",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qYesNo",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qHugeText",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qLongText",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qMultipleShort",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qShort",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qMultipleChoice",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "qMultipleChoiceComment",
+                    "value": "Y"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "&lt;p&gt;How much do you like LimeSurvey?&lt;/p&gt;",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": 1,
+                    "value": 1
+                  },
+                  {
+                    "label": 2,
+                    "value": 2
+                  },
+                  {
+                    "label": 3,
+                    "value": 3
+                  },
+                  {
+                    "label": 4,
+                    "value": 4
+                  },
+                  {
+                    "label": 5,
+                    "value": 5
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;\n\tWhat is your favorite pastime?&lt;/p&gt;",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Reading",
+                    "value": 1
+                  },
+                  {
+                    "label": "Programming",
+                    "value": 2
+                  },
+                  {
+                    "label": "Sleep",
+                    "value": 3
+                  },
+                  {
+                    "label": "Watching TV",
+                    "value": 4
+                  },
+                  {
+                    "label": "All of the above (sometimes simultaneously)",
+                    "value": 5
+                  },
+                  {
+                    "label": "Other",
+                    "value": "-oth-",
+                    "contingentQuestion": {
+                      "text": "Other",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;\n\tWhat is your favorite color?&lt;/p&gt;",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Red",
+                    "value": 1
+                  },
+                  {
+                    "label": "Orange",
+                    "value": 2
+                  },
+                  {
+                    "label": "Yellow",
+                    "value": 3
+                  },
+                  {
+                    "label": "Green",
+                    "value": 4
+                  },
+                  {
+                    "label": "Blue",
+                    "value": 5
+                  },
+                  {
+                    "label": "Indigo",
+                    "value": 6
+                  },
+                  {
+                    "label": "Violet",
+                    "value": 7
+                  },
+                  {
+                    "label": "Other",
+                    "value": "-oth-",
+                    "contingentQuestion": {
+                      "text": "Other",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;Who is your favorite relative?  Why?&lt;/p&gt;",
+            "response": [
+              {
+                "fixed": {
+                  "category": [
+                    {
+                      "label": "Father",
+                      "value": 1
+                    },
+                    {
+                      "label": "Mother",
+                      "value": 2
+                    },
+                    {
+                      "label": "Sister",
+                      "value": 3
+                    },
+                    {
+                      "label": "Brother",
+                      "value": 4
+                    },
+                    {
+                      "label": "Uncle",
+                      "value": 5
+                    },
+                    {
+                      "label": "Aunt",
+                      "value": 6
+                    },
+                    {
+                      "label": "Grandfather",
+                      "value": 7
+                    },
+                    {
+                      "label": "Grandmother",
+                      "value": 8
+                    }
+                  ]
+                }
+              },
+              {
+                "free": {
+                  "format": "longtext",
+                  "length": 40,
+                  "label": ""
+                }
+              }
+            ]
+          },
+          {
+            "text": "&lt;p&gt;How much do you like these foods?&lt;/p&gt;",
+            "subQuestion": [
+              {
+                "text": "Broccoli"
+              },
+              {
+                "text": "Ice Cream"
+              },
+              {
+                "text": "Chocolate"
+              },
+              {
+                "text": "Steak"
+              },
+              {
+                "text": "Escargot"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Hate",
+                    "value": 1
+                  },
+                  {
+                    "label": "Dislike",
+                    "value": 2
+                  },
+                  {
+                    "label": "Ambivalent",
+                    "value": 3
+                  },
+                  {
+                    "label": "Like",
+                    "value": 4
+                  },
+                  {
+                    "label": "Love",
+                    "value": 5
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;How much pain to you currently feel in the following locations?  1 = none, 10 = extreme&lt;/p&gt;",
+            "subQuestion": [
+              {
+                "text": "Head"
+              },
+              {
+                "text": "Torso"
+              },
+              {
+                "text": "Back"
+              },
+              {
+                "text": "Seat"
+              },
+              {
+                "text": "Hands"
+              },
+              {
+                "text": "Feet"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": 1,
+                    "value": 1
+                  },
+                  {
+                    "label": 2,
+                    "value": 2
+                  },
+                  {
+                    "label": 3,
+                    "value": 3
+                  },
+                  {
+                    "label": 4,
+                    "value": 4
+                  },
+                  {
+                    "label": 5,
+                    "value": 5
+                  },
+                  {
+                    "label": 6,
+                    "value": 6
+                  },
+                  {
+                    "label": 7,
+                    "value": 7
+                  },
+                  {
+                    "label": 8,
+                    "value": 8
+                  },
+                  {
+                    "label": 9,
+                    "value": 9
+                  },
+                  {
+                    "label": 10,
+                    "value": 10
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;How much do you like the following?  (1 = not at all, 5 = extremely)&lt;/p&gt;",
+            "subQuestion": [
+              {
+                "text": "Ballet"
+              },
+              {
+                "text": "Jazz"
+              },
+              {
+                "text": "Ballroom"
+              },
+              {
+                "text": "Tap"
+              },
+              {
+                "text": "Contemporary"
+              },
+              {
+                "text": "Hip Hop"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": 1,
+                    "value": 1
+                  },
+                  {
+                    "label": 2,
+                    "value": 2
+                  },
+                  {
+                    "label": 3,
+                    "value": 3
+                  },
+                  {
+                    "label": 4,
+                    "value": 4
+                  },
+                  {
+                    "label": 5,
+                    "value": 5
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;How should the following change?&lt;/p&gt;",
+            "subQuestion": [
+              {
+                "text": "Funding for education"
+              },
+              {
+                "text": "Funding for security (e.g. police, jails, military)"
+              },
+              {
+                "text": "Availability of high quality health care"
+              },
+              {
+                "text": "Compensation for teachers"
+              },
+              {
+                "text": "Compensation for executives"
+              },
+              {
+                "text": "Taxes on the rich"
+              },
+              {
+                "text": "Taxes on you"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Increase",
+                    "value": "I"
+                  },
+                  {
+                    "label": "Same",
+                    "value": "S"
+                  },
+                  {
+                    "label": "Decrease",
+                    "value": "D"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "&lt;p&gt;How long should it take to fix the following?&lt;/p&gt;",
+              "All bugs in LimeSurvey 1.91+"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Optimistic Estimate (days)"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Pessimistic Estimate (years)"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Realistic Estimate (weeks)"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "&lt;p&gt;How long should it take to fix the following?&lt;/p&gt;",
+              "All items on your To Do list"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Optimistic Estimate (days)"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Pessimistic Estimate (years)"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Realistic Estimate (weeks)"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "&lt;p&gt;How long should it take to fix the following?&lt;/p&gt;",
+              "All items on your 'honey-do' list"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Optimistic Estimate (days)"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Pessimistic Estimate (years)"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Realistic Estimate (weeks)"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "&lt;p&gt;How long should it take to fix the following?&lt;/p&gt;",
+              "The economy"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Optimistic Estimate (days)"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Pessimistic Estimate (years)"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Realistic Estimate (weeks)"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "&lt;p&gt;Who are your favorite characters in the following?&lt;/p&gt;",
+              "Harry Potter"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Favorite"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Second most"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Third most"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "&lt;p&gt;Who are your favorite characters in the following?&lt;/p&gt;",
+              "Star Trek"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Favorite"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Second most"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Third most"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "&lt;p&gt;Who are your favorite characters in the following?&lt;/p&gt;",
+              "Star Wars"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Favorite"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Second most"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Third most"
+                }
+              }
+            ]
+          },
+          {
+            "text": "&lt;p&gt;Which of the following conditions have you had?&lt;/p&gt;",
+            "subQuestion": [
+              {
+                "text": "cancer"
+              },
+              {
+                "text": "heart attack"
+              },
+              {
+                "text": "diabetes"
+              },
+              {
+                "text": "obesity"
+              },
+              {
+                "text": "depression"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Yes",
+                    "value": "Y"
+                  },
+                  {
+                    "label": "Uncertain",
+                    "value": "U"
+                  },
+                  {
+                    "label": "No",
+                    "value": "N"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;How tall are the following?&lt;/p&gt;",
+            "subQuestion": [
+              {
+                "text": "House"
+              },
+              {
+                "text": "Ferris Wheel (not including the London Eye)"
+              },
+              {
+                "text": "U.S. Capitol Building"
+              },
+              {
+                "text": "Washington Monument"
+              },
+              {
+                "text": "Empire State Building"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Short",
+                    "value": "s"
+                  },
+                  {
+                    "label": "Medium",
+                    "value": "m"
+                  },
+                  {
+                    "label": "Tall",
+                    "value": "t"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "&lt;p&gt;For each of these issues, how severe and bothersome are they?&lt;/p&gt;",
+              ""
+            ],
+            "subQuestion": [
+              {
+                "text": "Financial woes"
+              },
+              {
+                "text": "Health concerns"
+              },
+              {
+                "text": "Ability to get your doctors to listen"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Mild Severity",
+                    "value": "s1"
+                  },
+                  {
+                    "label": "Moderate Severity",
+                    "value": "s2"
+                  },
+                  {
+                    "label": "Extreme Severity",
+                    "value": "s3"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "&lt;p&gt;For each of these issues, how severe and bothersome are they?&lt;/p&gt;",
+              ""
+            ],
+            "subQuestion": [
+              {
+                "text": "Financial woes"
+              },
+              {
+                "text": "Health concerns"
+              },
+              {
+                "text": "Ability to get your doctors to listen"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Mild Bothersomeness",
+                    "value": "b1"
+                  },
+                  {
+                    "label": "Moderate Bothersomeness",
+                    "value": "b2"
+                  },
+                  {
+                    "label": "Extreme Bothersomeness",
+                    "value": "b3"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;When was your most recent birthday?&lt;/p&gt;",
+            "response": {
+              "free": {
+                "format": "date",
+                "length": 19,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;Please upload a picture&lt;/p&gt;"
+          },
+          {
+            "text": "&lt;p&gt;What gender are you?&lt;/p&gt;",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Female",
+                    "value": "F"
+                  },
+                  {
+                    "label": "Male",
+                    "value": "M"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;Pick a new language&lt;/p&gt;"
+          },
+          {
+            "text": "&lt;p&gt;How old are the following people (or how old were  they when they died)?&lt;/p&gt;",
+            "subQuestion": [
+              {
+                "text": "Yourself"
+              },
+              {
+                "text": "Your mother"
+              },
+              {
+                "text": "Your father"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;How old are you?&lt;/p&gt;",
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;Please rate your  favorite activities:&lt;/p&gt;",
+            "subQuestion": [
+              {
+                "text": "Sleeping"
+              },
+              {
+                "text": "Programming"
+              },
+              {
+                "text": "Watching Television"
+              },
+              {
+                "text": "Time with Family"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 1,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;Do you love LimeSurvey?&lt;/p&gt;",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Yes",
+                    "value": "Y"
+                  },
+                  {
+                    "label": "No",
+                    "value": "N"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;\n\tPlease paste your resume&lt;/p&gt;",
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 80,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;Please write an essay saying  how much you love LimeSurvey.&lt;/p&gt;",
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 40,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;What are the names of your best friends?&lt;/p&gt;",
+            "subQuestion": [
+              {
+                "text": "Favorite Friend"
+              },
+              {
+                "text": "Favorite Family Member"
+              },
+              {
+                "text": "Favorite Co-Worker"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "text",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;What is your favorite food?&lt;/p&gt;",
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 24,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "&lt;p&gt;Where would you like to vacation this year?&lt;/p&gt;",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Hawaii",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Bahamas",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Europe",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "New Zealand",
+                    "value": "Y"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "&lt;p&gt;Which of the following  do you like?   Please comment why or why not for each.&lt;/p&gt;",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Junk Food",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Reality TV",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Excercise",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Summary Page",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "This shows a summary of the responses given",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "Question#QuestionResponseCodeResponsenumEnter a numbernum2Enter another numbershowAnyDo you want to display any of the questions on the All Question Types page?nameWhat is your name?ageHow old are you?marriedAre you married?yearsMarriedHow many years have you been married, ?numKidsHow many children do you have?kid1How old is your first child?kid2How old is your second child?kid3How old is your third child?kid4How old is your fourth child?kid5How old is your fifth child?q5pointChoice&lt;p&gt;How much do you like LimeSurvey?&lt;/p&gt;\nqListDropdown&lt;p&gt;\n\tWhat is your favorite pastime?&lt;/p&gt;\nqListRadio&lt;p&gt;\n\tWhat is your favorite color?&lt;/p&gt;\nqListWithComment&lt;p&gt;Who is your favorite relative?  Why?&lt;/p&gt;\nqListWithComment_comment&lt;p&gt;Who is your favorite relative?  Why?&lt;/p&gt;\nqArray_F1BroccoliqArray_F2Ice CreamqArray_F3ChocolateqArray_F4SteakqArray_F5EscargotqArray10Point_L1HeadqArray10Point_L2TorsoqArray10Point_L3BackqArray10Point_L4SeatqArray10Point_L5HandsqArray10Point_L6FeetqArray5Point_1BalletqArray5Point_2JazzqArray5Point_3BallroomqArray5Point_4TapqArray5Point_5ContemporaryqArray5Point_6Hip HopqArrayISD_1Funding for educationqArrayISD_2Funding for security (e.g. police, jails, military)qArrayISD_3Availability of high quality health careqArrayISD_4Compensation for teachersqArrayISD_5Compensation for executivesqArrayISD_6Taxes on the richqArrayISD_7Taxes on youqArrayNumbers_ls1_minAll bugs in LimeSurvey 1.91+[Optimistic Estimate (days)]qArrayNumbers_ls1_maxAll bugs in LimeSurvey 1.91+[Pessimistic Estimate (years)]qArrayNumbers_ls1_avgAll bugs in LimeSurvey 1.91+[Realistic Estimate (weeks)]qArrayNumbers_todo_minAll items on your To Do list[Optimistic Estimate (days)]qArrayNumbers_todo_maxAll items on your To Do list[Pessimistic Estimate (years)]qArrayNumbers_todo_avgAll items on your To Do list[Realistic Estimate (weeks)]qArrayNumbers_honey_minAll items on your 'honey-do' list[Optimistic Estimate (days)]qArrayNumbers_honey_maxAll items on your 'honey-do' list[Pessimistic Estimate (years)]qArrayNumbers_honey_avgAll items on your 'honey-do' list[Realistic Estimate (weeks)]qArrayNumbers_econ_minThe economy[Optimistic Estimate (days)]qArrayNumbers_econ_maxThe economy[Pessimistic Estimate (years)]qArrayNumbers_econ_avgThe economy[Realistic Estimate (weeks)]qArrayTexts_hp_1stHarry Potter[Favorite]qArrayTexts_hp_2ndHarry Potter[Second most]qArrayTexts_hp_3rdHarry Potter[Third most]qArrayTexts_st_1stStar Trek[Favorite]qArrayTexts_st_2ndStar Trek[Second most]qArrayTexts_st_3rdStar Trek[Third most]qArrayTexts_sw_1stStar Wars[Favorite]qArrayTexts_sw_2ndStar Wars[Second most]qArrayTexts_sw_3rdStar Wars[Third most]qArrayYNU_1cancerqArrayYNU_2heart attackqArrayYNU_3diabetesqArrayYNU_4obesityqArrayYNU_5depressionqArrayByColumn_1HouseqArrayByColumn_2Ferris Wheel (not including the London Eye)qArrayByColumn_3U.S. Capitol BuildingqArrayByColumn_4Washington MonumentqArrayByColumn_5Empire State BuildingqArrayDualScale_money_0Financial woes[Scale 1]qArrayDualScale_money_1Financial woes[Scale 2]qArrayDualScale_health_0Health concerns[Scale 1]qArrayDualScale_health_1Health concerns[Scale 2]qArrayDualScale_md_0Ability to get your doctors to listen[Scale 1]qArrayDualScale_md_1Ability to get your doctors to listen[Scale 2]qDate&lt;p&gt;When was your most recent birthday?&lt;/p&gt;\nqFileUpload&lt;p&gt;Please upload a picture&lt;/p&gt;\nqGender&lt;p&gt;What gender are you?&lt;/p&gt;\nqLanguage&lt;p&gt;Pick a new language&lt;/p&gt;\nqMultipleNumerical_selfYourselfqMultipleNumerical_momYour motherqMultipleNumerical_dadYour fatherqNumerical&lt;p&gt;How old are you?&lt;/p&gt;\nqRanking_1Rank 1qRanking_2Rank 2qRanking_3Rank 3qRanking_4Rank 4qTextDisplay&lt;p&gt;This is just a text display.  Is the rendered value saved anywhere?  Is there a database field for it (e.g. to emulate the Equation question type)?&lt;/p&gt;\nqYesNo&lt;p&gt;Do you love LimeSurvey?&lt;/p&gt;\nqHugeText&lt;p&gt;\n\tPlease paste your resume&lt;/p&gt;\nqLongText&lt;p&gt;Please write an essay saying  how much you love LimeSurvey.&lt;/p&gt;\nqMultipleShort_friendFavorite FriendqMultipleShort_familyFavorite Family MemberqMultipleShort_workFavorite Co-WorkerqShort&lt;p&gt;What is your favorite food?&lt;/p&gt;\nqMultipleChoice_HawaiiHawaiiqMultipleChoice_BahamasBahamasqMultipleChoice_NewZealandNew ZealandqMultChoiceComment_junkJunk FoodqMultChoiceComment_junkcommentJunk FoodqMultChoiceComment_rtvReality TVqMultChoiceComment_rtvcommentReality TVqMultChoiceComment_exExcerciseqMultChoiceComment_excommentExcercise",
+            "administration": "self"
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Array Filter Tests",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "This tests each of the array filter types",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": "[M] All the other questions will filter on this one",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "First subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Second subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Third subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fourth subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fifth subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Other",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Other",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[1] Dual Scale",
+              ""
+            ],
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Low",
+                    "value": 1
+                  },
+                  {
+                    "label": "Medium",
+                    "value": 2
+                  },
+                  {
+                    "label": "High",
+                    "value": 3
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "[1] Dual Scale",
+              ""
+            ],
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Never",
+                    "value": 1
+                  },
+                  {
+                    "label": "Sometimes",
+                    "value": 2
+                  },
+                  {
+                    "label": "Always",
+                    "value": 3
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "First subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "Second subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "Third subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "Fourth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "Fifth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "First subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "Second subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "Third subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "Fourth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "Fifth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": "[A] 5 point choice",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": 1,
+                    "value": 1
+                  },
+                  {
+                    "label": 2,
+                    "value": 2
+                  },
+                  {
+                    "label": 3,
+                    "value": 3
+                  },
+                  {
+                    "label": 4,
+                    "value": 4
+                  },
+                  {
+                    "label": 5,
+                    "value": 5
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[B] 10 point Choice",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": 1,
+                    "value": 1
+                  },
+                  {
+                    "label": 2,
+                    "value": 2
+                  },
+                  {
+                    "label": 3,
+                    "value": 3
+                  },
+                  {
+                    "label": 4,
+                    "value": 4
+                  },
+                  {
+                    "label": 5,
+                    "value": 5
+                  },
+                  {
+                    "label": 6,
+                    "value": 6
+                  },
+                  {
+                    "label": 7,
+                    "value": 7
+                  },
+                  {
+                    "label": 8,
+                    "value": 8
+                  },
+                  {
+                    "label": 9,
+                    "value": 9
+                  },
+                  {
+                    "label": 10,
+                    "value": 10
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[C] Array Yes/No/Uncertain",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Yes",
+                    "value": "Y"
+                  },
+                  {
+                    "label": "Uncertain",
+                    "value": "U"
+                  },
+                  {
+                    "label": "No",
+                    "value": "N"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[E] Increase/Same/Decrease",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Increase",
+                    "value": "I"
+                  },
+                  {
+                    "label": "Same",
+                    "value": "S"
+                  },
+                  {
+                    "label": "Decrease",
+                    "value": "D"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[F] Flexible Array (Row)",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Low",
+                    "value": 1
+                  },
+                  {
+                    "label": "Medium",
+                    "value": 2
+                  },
+                  {
+                    "label": "High",
+                    "value": 3
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[M] Multiple Choice",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "First subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Second subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Third subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fourth subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fifth subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "MyOther",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "MyOther",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "[P] Multi-Choice Comments",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "First subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Second subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Third subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fourth subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fifth subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "My2ndOther",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "My2ndOther",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "[L] List drop-down",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "First subquestion",
+                    "value": "sq1"
+                  },
+                  {
+                    "label": "Second subquestion",
+                    "value": "sq2"
+                  },
+                  {
+                    "label": "Third subquestion",
+                    "value": "sq3"
+                  },
+                  {
+                    "label": "Fourth subquestion",
+                    "value": "sq4"
+                  },
+                  {
+                    "label": "Fifth subquestion",
+                    "value": "sq5"
+                  },
+                  {
+                    "label": "My3rdOther",
+                    "value": "-oth-",
+                    "contingentQuestion": {
+                      "text": "My3rdOther",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Array Filter Exclusion Tests",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "This tests each of the array filter exclusion types",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": [
+              "[1] Dual Scale",
+              ""
+            ],
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Low",
+                    "value": 1
+                  },
+                  {
+                    "label": "Medium",
+                    "value": 2
+                  },
+                  {
+                    "label": "High",
+                    "value": 3
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "[1] Dual Scale",
+              ""
+            ],
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Never",
+                    "value": 1
+                  },
+                  {
+                    "label": "Sometimes",
+                    "value": 2
+                  },
+                  {
+                    "label": "Always",
+                    "value": 3
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "First subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "Second subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "Third subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "Fourth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10",
+              "Fifth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 1,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "First subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "Second subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "Third subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "Fourth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Multi-Flex Text",
+              "Fifth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": "[A] 5 point choice",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": 1,
+                    "value": 1
+                  },
+                  {
+                    "label": 2,
+                    "value": 2
+                  },
+                  {
+                    "label": 3,
+                    "value": 3
+                  },
+                  {
+                    "label": 4,
+                    "value": 4
+                  },
+                  {
+                    "label": 5,
+                    "value": 5
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[B] 10 point Choice",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": 1,
+                    "value": 1
+                  },
+                  {
+                    "label": 2,
+                    "value": 2
+                  },
+                  {
+                    "label": 3,
+                    "value": 3
+                  },
+                  {
+                    "label": 4,
+                    "value": 4
+                  },
+                  {
+                    "label": 5,
+                    "value": 5
+                  },
+                  {
+                    "label": 6,
+                    "value": 6
+                  },
+                  {
+                    "label": 7,
+                    "value": 7
+                  },
+                  {
+                    "label": 8,
+                    "value": 8
+                  },
+                  {
+                    "label": 9,
+                    "value": 9
+                  },
+                  {
+                    "label": 10,
+                    "value": 10
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[C] Array Yes/No/Uncertain",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Yes",
+                    "value": "Y"
+                  },
+                  {
+                    "label": "Uncertain",
+                    "value": "U"
+                  },
+                  {
+                    "label": "No",
+                    "value": "N"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[E] Increase/Same/Decrease",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Increase",
+                    "value": "I"
+                  },
+                  {
+                    "label": "Same",
+                    "value": "S"
+                  },
+                  {
+                    "label": "Decrease",
+                    "value": "D"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[F] Flexible Array (Row)",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "Low",
+                    "value": 1
+                  },
+                  {
+                    "label": "Medium",
+                    "value": 2
+                  },
+                  {
+                    "label": "High",
+                    "value": 3
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "[M] Multiple Choice",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "First subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Second subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Third subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fourth subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fifth subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Other4afeMC",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Other4afeMC",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "[P] Multi-Choice Comments",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "First subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Second subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Third subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fourth subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fifth subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Other 4afeMCC",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Other 4afeMCC",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "[L] List drop-down",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "First subquestion",
+                    "value": "sq1"
+                  },
+                  {
+                    "label": "Second subquestion",
+                    "value": "sq2"
+                  },
+                  {
+                    "label": "Third subquestion",
+                    "value": "sq3"
+                  },
+                  {
+                    "label": "Fourth subquestion",
+                    "value": "sq4"
+                  },
+                  {
+                    "label": "Fifth subquestion",
+                    "value": "sq5"
+                  },
+                  {
+                    "label": "Other4afeL",
+                    "value": "-oth-",
+                    "contingentQuestion": {
+                      "text": "Other4afeL",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Validation Tests",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "These validations use dynamically generated min/max values whenever possible.",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": "[M] Multiple Choice  (min/max num answers)",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "First subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Second subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Third subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fourth subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fifth subquestion",
+                    "value": "Y"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "[P] Multi-Choice Comments (min/max num answers)",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "First subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Second subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Third subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fourth subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fifth subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "[R] Ranking question (min/max num answers)",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 1,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "[K] Multiple Numerical (min/max sum)",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "[K] Multiple Numerical (min/max sum SGQA)",
+            "directive": {
+              "position": "during",
+              "text": "The  sum of the values must be between &lt;b&gt;num&lt;/b&gt; and &lt;b&gt;num2&lt;/b&gt; from the Dynamic Math Display page.  So, base on current values, the sum must be between  {num} and {num2}",
+              "administration": "self"
+            },
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "First subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "Second subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "Third subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "Fourth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "Fifth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": "[K] Multiple Numerical (eq sum)",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "[K] Multiple Numerical (eq sum SGQA)",
+            "directive": {
+              "position": "during",
+              "text": "The sum of the values must equal &lt;b&gt;num&lt;/b&gt; from the Dynamic Math Display page, so based on current values, the sum must equal {num}",
+              "administration": "self"
+            },
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Validation Tests - with Regular Expression Masks",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "This tests that EM can create appropriate validation equations for question types that use built-in validation.  Most of these questions use regular expression masks",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": "[M] Multiple Choice  (min/max num answers)",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "First subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Second subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Third subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fourth subquestion",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fifth subquestion",
+                    "value": "Y"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "[P] Multi-Choice Comments (min/max num answers)",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "First subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Second subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Third subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fourth subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Fifth subquestion",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "[R] Ranking question (min/max num answers)",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 1,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "[K] Multiple Numerical (min/max sum)",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "[K] Multiple Numerical (min/max sum SGQA)",
+            "directive": {
+              "position": "during",
+              "text": "The sum of the values must be between &lt;b&gt;num&lt;/b&gt; and &lt;b&gt;num2&lt;/b&gt; from the Dynamic Math display page, so based on current values, between {num} and {num2}.",
+              "administration": "self"
+            },
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "First subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "Second subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "Third subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "Fourth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[:] Multi-Flex 1-10 (multiflex min/max)",
+              "Fifth subquestion"
+            ],
+            "response": [
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Never"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Sometimes"
+                }
+              },
+              {
+                "free": {
+                  "format": "integer",
+                  "length": 2,
+                  "label": "Always"
+                }
+              }
+            ]
+          },
+          {
+            "text": "[K] Multiple Numerical (eq sum)",
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "[K] Multiple Numerical (eq sum SGQA)",
+            "directive": {
+              "position": "during",
+              "text": "Entries must be 1-99, or 888 (refused) or 999 (unknown)  AND, the sum must equal {num} (&lt;b&gt;num&lt;/b&gt; from the Dynamic Math Display page.)",
+              "administration": "self"
+            },
+            "subQuestion": [
+              {
+                "text": "First subquestion"
+              },
+              {
+                "text": "Second subquestion"
+              },
+              {
+                "text": "Third subquestion"
+              },
+              {
+                "text": "Fourth subquestion"
+              },
+              {
+                "text": "Fifth subquestion"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "Numeric - min/max",
+            "directive": {
+              "position": "during",
+              "text": "Numbers must be between 0 and 99 (and also between &lt;b&gt;yearsMarried&lt;/b&gt; and &lt;b&gt;age&lt;/b&gt; (both from the Dynamic Relevance page), so based on current values, between {yearsMarried} and {age})",
+              "administration": "self"
+            },
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "Multiple emails",
+            "directive": {
+              "position": "during",
+              "text": "Validation equation (if used) is /(\\w[-._\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3})/",
+              "administration": "self"
+            },
+            "subQuestion": [
+              {
+                "text": "Work Email"
+              },
+              {
+                "text": "Personal Email"
+              },
+              {
+                "text": "Secondary  Email"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "text",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "How much US money do you have in your pocket?",
+            "directive": {
+              "position": "during",
+              "text": "Validation equation is /^\\$?\\d+(\\.(\\d{2}))?$/",
+              "administration": "self"
+            },
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 24,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "Write a sentence with between 2 and 10 words",
+            "directive": {
+              "position": "during",
+              "text": "Validation equation is /^[-\\w]+(?:\\W+[-\\w]+){2,10}\\W*$/",
+              "administration": "self"
+            },
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 40,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "Write an essay about a pet.  Must contain the word cat, dog, or hampster",
+            "directive": {
+              "position": "during",
+              "text": "Validation equation is /\\s(cat|dog|hampster)\\s/",
+              "administration": "self"
+            },
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 80,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": [
+              "[;] Enter multiple US phone numbers",
+              "First subquestion"
+            ],
+            "directive": {
+              "position": "during",
+              "text": "NOTE:  This question is array_filtered on &lt;b&gt;afSrcFilter&lt;/b&gt; in the Array Filter Tests page.Please enter a valid US phone number.  The Validation Equation is /^(?:\\(\\d{ 3 }\\))\\s*\\d{ 3 }-\\d{ 4 }$/",
+              "administration": "self"
+            },
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Home Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Work Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Cell Phone"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Enter multiple US phone numbers",
+              "Second subquestion"
+            ],
+            "directive": {
+              "position": "during",
+              "text": "NOTE:  This question is array_filtered on &lt;b&gt;afSrcFilter&lt;/b&gt; in the Array Filter Tests page.Please enter a valid US phone number.  The Validation Equation is /^(?:\\(\\d{ 3 }\\))\\s*\\d{ 3 }-\\d{ 4 }$/",
+              "administration": "self"
+            },
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Home Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Work Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Cell Phone"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Enter multiple US phone numbers",
+              "Third subquestion"
+            ],
+            "directive": {
+              "position": "during",
+              "text": "NOTE:  This question is array_filtered on &lt;b&gt;afSrcFilter&lt;/b&gt; in the Array Filter Tests page.Please enter a valid US phone number.  The Validation Equation is /^(?:\\(\\d{ 3 }\\))\\s*\\d{ 3 }-\\d{ 4 }$/",
+              "administration": "self"
+            },
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Home Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Work Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Cell Phone"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Enter multiple US phone numbers",
+              "Fourth subquestion"
+            ],
+            "directive": {
+              "position": "during",
+              "text": "NOTE:  This question is array_filtered on &lt;b&gt;afSrcFilter&lt;/b&gt; in the Array Filter Tests page.Please enter a valid US phone number.  The Validation Equation is /^(?:\\(\\d{ 3 }\\))\\s*\\d{ 3 }-\\d{ 4 }$/",
+              "administration": "self"
+            },
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Home Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Work Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Cell Phone"
+                }
+              }
+            ]
+          },
+          {
+            "text": [
+              "[;] Enter multiple US phone numbers",
+              "Fifth subquestion"
+            ],
+            "directive": {
+              "position": "during",
+              "text": "NOTE:  This question is array_filtered on &lt;b&gt;afSrcFilter&lt;/b&gt; in the Array Filter Tests page.Please enter a valid US phone number.  The Validation Equation is /^(?:\\(\\d{ 3 }\\))\\s*\\d{ 3 }-\\d{ 4 }$/",
+              "administration": "self"
+            },
+            "response": [
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Home Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Work Phone"
+                }
+              },
+              {
+                "free": {
+                  "format": "text",
+                  "length": 10,
+                  "label": "Cell Phone"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Other substitutions",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "Test of whether other substitutions are translated",
+            "administration": "self"
+          }
+        ],
+        "question": [
+          {
+            "text": "Replace \"other\" in List",
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "name:  {name}",
+                    "value": 1
+                  },
+                  {
+                    "label": "num: {num}",
+                    "value": 2
+                  },
+                  {
+                    "label": "num2: {num2}",
+                    "value": 3
+                  },
+                  {
+                    "label": "age: {age}",
+                    "value": 4
+                  },
+                  {
+                    "label": "Other {city}",
+                    "value": "-oth-",
+                    "contingentQuestion": {
+                      "text": "Other {city}",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "Tailor headers and dropdown prefix/suffix",
+              "Scale 1: {name}"
+            ],
+            "subQuestion": [
+              {
+                "text": "==name:  {name}"
+              },
+              {
+                "text": "==num: {num}"
+              },
+              {
+                "text": "==num2: {num2}"
+              },
+              {
+                "text": "==age: {age}"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "name:  {name}",
+                    "value": 1
+                  },
+                  {
+                    "label": "num: {num}",
+                    "value": 2
+                  },
+                  {
+                    "label": "num2: {num2}",
+                    "value": 3
+                  },
+                  {
+                    "label": "age: {age}",
+                    "value": 4
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": [
+              "Tailor headers and dropdown prefix/suffix",
+              "Scale 2: {city}"
+            ],
+            "subQuestion": [
+              {
+                "text": "==name:  {name}"
+              },
+              {
+                "text": "==num: {num}"
+              },
+              {
+                "text": "==num2: {num2}"
+              },
+              {
+                "text": "==age: {age}"
+              }
+            ],
+            "response": {
+              "fixed": {
+                "category": [
+                  {
+                    "label": "*name:  {name}",
+                    "value": 1
+                  },
+                  {
+                    "label": "*num: {num}",
+                    "value": 2
+                  },
+                  {
+                    "label": "*num2: {num2}",
+                    "value": 3
+                  },
+                  {
+                    "label": "*age: {age}",
+                    "value": 4
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "text": "Set prefix/suffix for multiple numerical",
+            "subQuestion": [
+              {
+                "text": "name:  {name}"
+              },
+              {
+                "text": "num: {num}"
+              },
+              {
+                "text": "num2: {num2}"
+              },
+              {
+                "text": "age: {age}"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "prefix/suffix for Numerical",
+            "response": {
+              "free": {
+                "format": "integer",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "prefix/suffix for Multiple short text",
+            "subQuestion": [
+              {
+                "text": "name:  {name}"
+              },
+              {
+                "text": "num: {num}"
+              },
+              {
+                "text": "num2: {num2}"
+              },
+              {
+                "text": "age: {age}"
+              }
+            ],
+            "response": {
+              "free": {
+                "format": "text",
+                "length": 10,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "prefix/suffix for Short free text",
+            "response": {
+              "free": {
+                "format": "longtext",
+                "length": 24,
+                "label": ""
+              }
+            }
+          },
+          {
+            "text": "tailor other in multiple choice",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "name:  {name}",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "num: {num}",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "num2: {num2}",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "age: {age}",
+                    "value": "Y"
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Other {city}",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Other {city}",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "text": "tailor other for MCC",
+            "response": [
+              {
+                "fixed": {
+                  "category": {
+                    "label": "name:  {name}",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "num: {num}",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "num2: {num2}",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "age: {age}",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Comment",
+                      "length": 10,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              },
+              {
+                "fixed": {
+                  "category": {
+                    "label": "Other {city}",
+                    "value": "Y",
+                    "contingentQuestion": {
+                      "text": "Other {city}",
+                      "length": 24,
+                      "format": "longtext"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sectionInfo": [
+          {
+            "position": "title",
+            "text": "Final Page",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "This page is here so that you can backup and change values prior to submitting your responses.",
+            "administration": "self"
+          },
+          {
+            "position": "before",
+            "text": "&lt;p&gt;\n\tYou're all done, thanks!&lt;/p&gt;",
+            "administration": "self"
+          }
+        ]
+      }
+    ]
+  }
+}
