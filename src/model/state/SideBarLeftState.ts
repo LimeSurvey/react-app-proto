@@ -27,4 +27,4 @@ export const useMutationSideBarLeftState = () => useMutation<SideBarLeft, unknow
     }
 )
 
-export default useQuerySideBarLeftState;
+export default useQuerySideBarLeftState

@@ -28,7 +28,9 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
 
     return (
         <Row className={classNames('top-bar', 'border', 'mb-1')}>
-            <Col xs={2} xl={2} className={classNames('d-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1')}>
+            <Col xs={2} xl={2} className={classNames(
+                'd-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1'
+            )}>
                 <span className={classNames('p-2')}>{props.siteName ?? 'LimeSurvey'}</span>
                 <span>
                     <Button variant="dark" size="sm" className={classNames('m-1')}>
@@ -43,7 +45,9 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
                     </Button>
                 </span>
             </Col>
-            <Col className={classNames('d-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1')}>
+            <Col className={classNames(
+                'd-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1'
+            )}>
                 <Form.Select
                     aria-label="Default select example"
                     className={classNames('text-align-center')}
@@ -53,7 +57,9 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
                     <option value="3">My Survey Three</option>
                 </Form.Select>
             </Col>
-            <Col  xs={2} xl={2} className={classNames('d-flex', 'align-items-center', 'justify-content-end', 'p-2', 'm-1')}>
+            <Col  xs={2} xl={2} className={classNames(
+                'd-flex', 'align-items-center', 'justify-content-end', 'p-2', 'm-1'
+            )}>
                 <Button variant="dark" size="sm" className={classNames('d-flex', 'ml-auto', 'm-1')}>
                     <PlusLg />
                 </Button>
