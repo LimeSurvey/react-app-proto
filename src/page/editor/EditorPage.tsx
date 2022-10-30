@@ -2,6 +2,7 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import './EditorPage.scss'
 import Container from 'react-bootstrap/Container'
+import { useQuerySideBarLeftState } from '../../model/state/SideBarLeftState'
 import Row from 'react-bootstrap/Row'
 import TopBar from '../../component/editor/top-bar/TopBar'
 import SideBarLeft from '../../component/editor/side-bar-left/SideBarLeft'
@@ -25,8 +26,9 @@ const fetchSurvey = (): Promise<Survey> => fetch('/data/survey_82556_en.json')
 
 function EditorPage() {
 
-    const survey = useQuery(['survey'], fetchSurvey);
+    const { data: sideBarLeftStateData } = useQuerySideBarLeftState();
 
+    const survey = useQuery(['survey'], fetchSurvey);
     const siteConfig = {
         name: 'LimeSurvey 2'
     };
@@ -35,7 +37,10 @@ function EditorPage() {
         <Container id="container" fluid>
             <TopBar siteName={siteConfig.name} />
             <Row id="content">
-                <SideBarLeft />
+                { sideBarLeftStateData && sideBarLeftStateData.open
+                    ? <SideBarLeft />
+                    : null
+                }
                 <Content />
                 <SideBarRight />
                 {JSON.stringify(survey)}

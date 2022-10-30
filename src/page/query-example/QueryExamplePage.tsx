@@ -1,12 +1,12 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { statsQueryGet } from '../../model/query/StatsQuery'
+import { statsQuery } from '../../model/state/Stats'
 
 const debug = true
 
 export default function QueryExamplePage() {
 
-    const { isInitialLoading, error, data } = useQuery(['exampleStatsQueryGet'], statsQueryGet, {
+    const { isInitialLoading, error, data } = useQuery(['statsQuery'], statsQuery, {
         onSuccess: (data) => {
             return debug ? console.log('onSuccess', data) : null
         }

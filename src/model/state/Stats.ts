@@ -8,7 +8,7 @@ const mockData = new Stats({
     forks_count: 1245
 })
 
-export async function statsQueryGet(): Promise<Stats> {
+export async function statsQuery(): Promise<Stats> {
     return new Promise((resolve, _reject) => {
         setTimeout(() => {
             resolve(mockData)
@@ -16,4 +16,4 @@ export async function statsQueryGet(): Promise<Stats> {
     })
 }
 
-export default statsQueryGet;
+export default statsQuery;

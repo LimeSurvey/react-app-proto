@@ -1,15 +1,33 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import './TopBar.scss'
+import { useQueryClient } from '@tanstack/react-query'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { PlusLg, ListNested } from 'react-bootstrap-icons'
 import classNames from 'classnames'
+import {
+    useQuerySideBarLeftState,
+    useMutationSideBarLeftState,
+    SideBarLeftStateOptions
+} from '../../../model/state/SideBarLeftState'
 
 export type TopBarProps = {siteName?:string};
 
 export const TopBar: React.FC<TopBarProps> = (props) => {
+
+    const client = useQueryClient();
+    const { data: sideBarLeftData, refetch: sideBarLeftDataRefetch } = useQuerySideBarLeftState();
+    const { mutateAsync: sideBarLeftMutateSync } = useMutationSideBarLeftState(client);
+    const updateSideBarLeft = (options:SideBarLeftStateOptions) =>
+        sideBarLeftMutateSync(options).then(() => sideBarLeftDataRefetch())
+
+    const toggleSideBarLeft = (origValue: SideBarLeftStateOptions|undefined) => {
+        const openPrev = origValue !== undefined ? origValue.open : true;
+        updateSideBarLeft({open: !openPrev})
+    }
+
     return (
         <Row className={classNames('top-bar', 'border')}>
             <Col className={classNames('d-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1')}>
@@ -18,7 +36,7 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
                     <Button variant="dark" size="sm" className={classNames('m-1')}>
                         <PlusLg />
                     </Button>
-                    <Button variant="dark" size="sm">
+                    <Button variant="dark" size="sm" onClick={() => toggleSideBarLeft(sideBarLeftData)}>
                         <ListNested />
                     </Button>
                 </span>
