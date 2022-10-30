@@ -15,15 +15,15 @@ let sideBarLeftStateData:SideBarLeftState = {
 };
 
 export const useQuerySideBarLeftState = () => useQuery(['sideBarLeft'], () => {
-    return sideBarLeftStateData;
+    return sideBarLeftStateData
 })
 
 // @ts-ignore - react-query useMutation typing is broken
-export const useMutationSideBarLeftState = (client) => useMutation<SideBarLeft, unknown, SideBarLeftOptions>(
+export const useMutationSideBarLeftState = () => useMutation<SideBarLeft, unknown, SideBarLeftOptions>(
     // @ts-ignore - react-query useMutation typing is broken
     (newData) => {
-        sideBarLeftStateData = {...sideBarLeftStateData, ...newData};
-        return sideBarLeftStateData;
+        sideBarLeftStateData = {...sideBarLeftStateData, ...newData}
+        return sideBarLeftStateData
     }
 )
 

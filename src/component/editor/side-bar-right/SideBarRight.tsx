@@ -5,8 +5,16 @@ import classNames from 'classnames'
 
 function SideBarRight() {
     return (
-        <Col className={classNames('sidebar', 'sidebar-r', 'd-flex', 'align-items-center', 'justify-content-start', 'p-2', 'm-1')}>
-            right side bar
+        <Col xs={2} xl={2} className={classNames(
+            'sidebar-r',
+            'align-items-center',
+            'justify-content-start'
+        )}>
+                <div
+                    className={classNames('p-2')}
+                >
+                    left side bar
+                </div>
         </Col>
     )
 }

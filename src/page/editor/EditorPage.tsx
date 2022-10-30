@@ -1,8 +1,6 @@
 import React from 'react'
-import { useQuery } from '@tanstack/react-query'
 import './EditorPage.scss'
 import Container from 'react-bootstrap/Container'
-import { useQuerySideBarLeftState } from '../../model/state/SideBarLeftState'
 import Row from 'react-bootstrap/Row'
 import TopBar from '../../component/editor/top-bar/TopBar'
 import SideBarLeft from '../../component/editor/side-bar-left/SideBarLeft'
@@ -19,16 +17,15 @@ class Survey {
     }
 };
 
+/*
 const fetchSurvey = (): Promise<Survey> => fetch('/data/survey_82556_en.json')
 .then((resp) => {
     return new Survey(resp.json())
 })
+*/
 
 function EditorPage() {
-
-    const { data: sideBarLeftStateData } = useQuerySideBarLeftState();
-
-    const survey = useQuery(['survey'], fetchSurvey);
+    //const survey = useQuery(['survey'], fetchSurvey)
     const siteConfig = {
         name: 'LimeSurvey 2'
     };
@@ -37,13 +34,9 @@ function EditorPage() {
         <Container id="container" fluid>
             <TopBar siteName={siteConfig.name} />
             <Row id="content">
-                { sideBarLeftStateData && sideBarLeftStateData.open
-                    ? <SideBarLeft />
-                    : null
-                }
+                <SideBarLeft />
                 <Content />
                 <SideBarRight />
-                {JSON.stringify(survey)}
             </Row>
         </Container>
     )

@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import './TopBar.scss'
-import { useQueryClient } from '@tanstack/react-query'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
@@ -17,31 +16,34 @@ export type TopBarProps = {siteName?:string};
 
 export const TopBar: React.FC<TopBarProps> = (props) => {
 
-    const client = useQueryClient();
     const { data: sideBarLeftData, refetch: sideBarLeftDataRefetch } = useQuerySideBarLeftState();
-    const { mutateAsync: sideBarLeftMutateSync } = useMutationSideBarLeftState(client);
+    const { mutateAsync: sideBarLeftMutateSync } = useMutationSideBarLeftState();
     const updateSideBarLeft = (options:SideBarLeftStateOptions) =>
         sideBarLeftMutateSync(options).then(() => sideBarLeftDataRefetch())
 
-    const toggleSideBarLeft = (origValue: SideBarLeftStateOptions|undefined) => {
+    const toggleSideBarLeftVisibility = (origValue: SideBarLeftStateOptions|undefined) => {
         const openPrev = origValue !== undefined ? origValue.open : true;
         updateSideBarLeft({open: !openPrev})
     }
 
     return (
-        <Row className={classNames('top-bar', 'border')}>
-            <Col className={classNames('d-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1')}>
+        <Row className={classNames('top-bar', 'border', 'mb-1')}>
+            <Col xs={2} xl={2} className={classNames('d-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1')}>
                 <span className={classNames('p-2')}>{props.siteName ?? 'LimeSurvey'}</span>
                 <span>
                     <Button variant="dark" size="sm" className={classNames('m-1')}>
                         <PlusLg />
                     </Button>
-                    <Button variant="dark" size="sm" onClick={() => toggleSideBarLeft(sideBarLeftData)}>
+                    <Button
+                        variant={sideBarLeftData?.open ? 'secondary' : 'dark'}
+                        size="sm"
+                        onClick={() => toggleSideBarLeftVisibility(sideBarLeftData)}
+                    >
                         <ListNested />
                     </Button>
                 </span>
             </Col>
-            <Col xs={7} className={classNames('d-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1')}>
+            <Col className={classNames('d-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1')}>
                 <Form.Select
                     aria-label="Default select example"
                     className={classNames('text-align-center')}
@@ -51,7 +53,7 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
                     <option value="3">My Survey Three</option>
                 </Form.Select>
             </Col>
-            <Col className={classNames('d-flex', 'align-items-center', 'justify-content-end', 'p-2', 'm-1')}>
+            <Col  xs={2} xl={2} className={classNames('d-flex', 'align-items-center', 'justify-content-end', 'p-2', 'm-1')}>
                 <Button variant="dark" size="sm" className={classNames('d-flex', 'ml-auto', 'm-1')}>
                     <PlusLg />
                 </Button>
