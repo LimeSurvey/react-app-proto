@@ -8,7 +8,7 @@ import { PlusLg, ListNested } from 'react-bootstrap-icons'
 import classNames from 'classnames'
 import { useQuerySiteState, useMutationSiteState } from '../../../model/site/SiteHook'
 import { useQuerySideBarLeftState, useMutationSideBarLeftState } from '../../../model/side-bar-left/SideBarLeftHook'
-import { getApi as sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
+import { sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
 
 export type TopBarProps = {siteName?:string};
 
