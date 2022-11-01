@@ -1,22 +1,20 @@
 {
-  "site": {
     "site": {
-      "name": "Testing"
-    }
-  },
-  "survey": {
-    "1": {
-      "survey": {
-        "title": "Test Survey 1"
-      }
-    }
-  },
-  "user": {
-    "1": {
-      "user": {
-        "name": "Test User",
-        "email": "test@mail.com"
-      }
-    }
-  }
+        "name": "Testing"
+    },
+
+    "survey": [
+        {
+            "id": 1,
+            "title": "Test Survey 1"
+        }
+    ],
+
+   "user": [
+        {
+            "id": 1,
+            "name": "Test User",
+            "email": "test@mail.com"
+        }
+   ]
 }
