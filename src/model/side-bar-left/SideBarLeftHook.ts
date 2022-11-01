@@ -2,7 +2,11 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import SideBarLeft from './SideBarLeft'
 import { getSideBarLeft, setSideBarLeft } from './SideBarLeftState'
 
-export const useQuerySideBarLeftState = () => useQuery(['sideBarLeft'], getSideBarLeft)
+export const useQuerySideBarLeftState = () => useQuery({
+    queryKey: ['sideBarLEft'],
+    queryFn: getSideBarLeft,
+    initialData: new SideBarLeft()
+})
 
 // @ts-ignore - react-query useMutation typing is broken
 export const useMutationSideBarLeftState = () => useMutation<SideBarLeft, unknown, Partial<SideBarLeft>>(

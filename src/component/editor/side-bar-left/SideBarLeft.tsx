@@ -3,19 +3,21 @@ import './SideBarLeft.scss'
 import Collapse from 'react-bootstrap/Collapse'
 import Col from 'react-bootstrap/Col'
 import classNames from 'classnames'
-import { useQuerySideBarLeftState } from '../../../model/side-bar-left/SideBarLeftHook'
+import { getApi as sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
+import { useQuerySideBarLeftState, useMutationSideBarLeftState } from '../../../model/side-bar-left/SideBarLeftHook'
 
 function SideBarLeft() {
 
-    const { data: sideBarLeftStateData } = useQuerySideBarLeftState()
-    const isVisible = sideBarLeftStateData?.open !== undefined
-        ? sideBarLeftStateData?.open
-        : true;
+    const sideBarLeftApi = sideBarLeftGetApi(
+        useQuerySideBarLeftState(),
+        useMutationSideBarLeftState()
+    );
+
     const [ isFullyVisible, setIsFullyVisible ] = useState(true);
 
     return (
         <Collapse
-            in={isVisible}
+            in={sideBarLeftApi.sideBarLeft.open}
             dimension="width"
             onEntered={() => {
                 setIsFullyVisible(true)

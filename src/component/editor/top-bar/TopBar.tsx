@@ -7,24 +7,19 @@ import Col from 'react-bootstrap/Col'
 import { PlusLg, ListNested } from 'react-bootstrap-icons'
 import classNames from 'classnames'
 import { useQuerySiteState, useMutationSiteState } from '../../../model/site/SiteHook'
-import SideBarLeft from '../../../model/side-bar-left/SideBarLeft'
 import { useQuerySideBarLeftState, useMutationSideBarLeftState } from '../../../model/side-bar-left/SideBarLeftHook'
+import { getApi as sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
 
 export type TopBarProps = {siteName?:string};
 
 export const TopBar: React.FC<TopBarProps> = (props) => {
 
-    const { data: sideBarLeftData, refetch: sideBarLeftDataRefetch } = useQuerySideBarLeftState();
-    const { mutateAsync: sideBarLeftMutateSync } = useMutationSideBarLeftState();
-    const updateSideBarLeft = (options: Partial<SideBarLeft>) =>
-        sideBarLeftMutateSync(options).then(() => sideBarLeftDataRefetch())
+    const sideBarLeftApi = sideBarLeftGetApi(
+        useQuerySideBarLeftState(),
+        useMutationSideBarLeftState()
+    );
 
-    const toggleSideBarLeftVisibility = (origValue: Partial<SideBarLeft>|undefined) => {
-        const openPrev = origValue !== undefined ? origValue.open : true;
-        updateSideBarLeft({open: !openPrev})
-    }
-
-    const { data: siteData, refetch: siteDataRefetch } = useQuerySiteState();
+    const { data: site, refetch: siteDataRefetch } = useQuerySiteState();
     const { mutateAsync: siteMutateSync } =  useMutationSiteState();
 
     return (
@@ -32,15 +27,15 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
             <Col xs={2} xl={2} className={classNames(
                 'd-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1'
             )}>
-                <span className={classNames('p-2')}>{siteData?.name ?? 'LimeSurvey'}</span>
+                <span className={classNames('p-2')}>{site.name}</span>
                 <span>
                     <Button variant="dark" size="sm" className={classNames('m-1')}>
                         <PlusLg />
                     </Button>
                     <Button
-                        variant={sideBarLeftData?.open ? 'secondary' : 'dark'}
+                        variant={sideBarLeftApi.sideBarLeft.open ? 'secondary' : 'dark'}
                         size="sm"
-                        onClick={() => toggleSideBarLeftVisibility(sideBarLeftData)}
+                        onClick={() => sideBarLeftApi.toggleSideBarLeftVisibility(sideBarLeftApi.sideBarLeft)}
                     >
                         <ListNested />
                     </Button>

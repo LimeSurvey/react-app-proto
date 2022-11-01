@@ -1,7 +1,12 @@
 import { useQuery, useMutation } from '@tanstack/react-query'
+import Site from './Site'
 import { getSite, setSite } from './SiteState'
 
-export const useQuerySiteState = () => useQuery(['site'], getSite)
+export const useQuerySiteState = () => useQuery({
+    queryKey: ['site'],
+    queryFn: getSite,
+    initialData: new Site()
+})
 
 // @ts-ignore - react-query useMutation typing is broken
 export const useMutationSiteState = () => useMutation<Site, unknown, Partial<Site>>(
