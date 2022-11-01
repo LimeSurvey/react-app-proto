@@ -4,13 +4,13 @@ import Collapse from 'react-bootstrap/Collapse'
 import Col from 'react-bootstrap/Col'
 import classNames from 'classnames'
 import { sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
-import { useQuerySideBarLeftState, useMutationSideBarLeftState } from '../../../model/side-bar-left/SideBarLeftHook'
+import { useQuerySideBarLeft, useMutationSideBarLeft } from '../../../model/side-bar-left/SideBarLeftHook'
 
 function SideBarLeft() {
 
     const sideBarLeftApi = sideBarLeftGetApi(
-        useQuerySideBarLeftState(),
-        useMutationSideBarLeftState()
+        useQuerySideBarLeft(),
+        useMutationSideBarLeft()
     );
 
     const [ isFullyVisible, setIsFullyVisible ] = useState(true);

@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import { PlusLg, ListNested } from 'react-bootstrap-icons'
 import classNames from 'classnames'
 import { useQuerySiteState, useMutationSiteState } from '../../../model/site/SiteHook'
-import { useQuerySideBarLeftState, useMutationSideBarLeftState } from '../../../model/side-bar-left/SideBarLeftHook'
+import { useQuerySideBarLeft, useMutationSideBarLeft } from '../../../model/side-bar-left/SideBarLeftHook'
 import { sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
 
 export type TopBarProps = {siteName?:string};
@@ -15,8 +15,8 @@ export type TopBarProps = {siteName?:string};
 export const TopBar: React.FC<TopBarProps> = (props) => {
 
     const sideBarLeftApi = sideBarLeftGetApi(
-        useQuerySideBarLeftState(),
-        useMutationSideBarLeftState()
+        useQuerySideBarLeft(),
+        useMutationSideBarLeft()
     );
 
     const { data: site, refetch: siteDataRefetch } = useQuerySiteState();
