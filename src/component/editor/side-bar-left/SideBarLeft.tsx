@@ -3,7 +3,7 @@ import './SideBarLeft.scss'
 import Collapse from 'react-bootstrap/Collapse'
 import Col from 'react-bootstrap/Col'
 import classNames from 'classnames'
-import { useQuerySideBarLeftState } from '../../../model/state/SideBarLeftState'
+import { useQuerySideBarLeftState } from '../../../model/side-bar-left/SideBarLeftHook'
 
 function SideBarLeft() {
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { statsQuery } from '../../model/state/Stats'
+import { statsQuery } from '../../model/stats/Stats'
 
 const debug = true
 
