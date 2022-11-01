@@ -3,7 +3,7 @@ import SideBarLeft from './SideBarLeft'
 import { getSideBarLeft, setSideBarLeft } from './SideBarLeftState'
 
 export const useQuerySideBarLeftState = () => useQuery({
-    queryKey: ['sideBarLEft'],
+    queryKey: ['sideBarLeft'],
     queryFn: getSideBarLeft,
     initialData: new SideBarLeft()
 })
