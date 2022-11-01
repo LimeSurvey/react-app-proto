@@ -8,7 +8,8 @@ import SideBarLeft from './SideBarLeft'
  * component and returns the data and actions for working with them.
  *
  * The idea behind this actions file is to move the state manipulation logic
- * out of the react-component.
+ * out of the react-component. This allows for reuse of actions across different
+ * react-components.
  *
  * Because of the way react-hooks work, hooks must be invoked directly inside the
  * react-component. For this reason, we invoke the hooks in the in react-component
