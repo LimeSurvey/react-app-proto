@@ -5,9 +5,9 @@ import { getSideBarLeft, setSideBarLeft } from './SideBarLeftState'
 export const useQuerySideBarLeft = () => useQuery({
     queryKey: ['sideBarLeft'],
     queryFn: getSideBarLeft,
+    //initialData: new SideBarLeft(),
     staleTime: Infinity,
     cacheTime: 1000 * 60 * 60,
-    //initialData: new SideBarLeft()
 })
 
 // @ts-ignore - react-query useMutation typing is broken

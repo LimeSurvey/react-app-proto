@@ -7,13 +7,12 @@ import SideBarLeft from './SideBarLeft'
  * This function takes the return data of hooks used in the left-side-bar
  * component and returns the data and actions for working with them.
  *
- * The idea behind this actions file is to move the state manipulation logic
- * out of the react-component. This allows for reuse of actions across different
- * react-components.
+ * This api file keeps the state manipulation logic out of the react-component.
+ * allowing for reuse of actions across multiple react-components.
  *
  * Because of the way react-hooks work, hooks must be invoked directly inside the
- * react-component. For this reason, we invoke the hooks in the in react-component
- * and immediately pass them to this getActions() function.
+ * react-component. For this reason, we invoke the hooks inside the react-component
+ * and pass them to this getActions() function.
  *
  * @param UseQueryResult<SideBarLeft>,
  * @param UseMutationResult<SideBarLeft, unknown, Partial<SideBarLeft>>
