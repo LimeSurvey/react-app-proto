@@ -2,9 +2,13 @@
 import { QueryClient } from '@tanstack/react-query'
 import {
     Persister,
+//    PersistedClient,
     PersistQueryClientOptions,
 } from '@tanstack/react-query-persist-client'
+//import { get, set, del } from 'idb-keyval'
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
+import { JsonTyped } from './json-typed'
+import types from './types'
 
 const msDay = 1000 * 60 * 60;
 const maxAge = msDay * 30;
@@ -27,17 +31,40 @@ export const queryClient = new QueryClient({
     },
 })
 
-export const persister: Persister = createSyncStoragePersister({
-    storage: window.sessionStorage,
+const persister: Persister = createSyncStoragePersister({
+    storage: window.localStorage,
     serialize: (data) => {
         // console.log('serialize');
-        return JSON.stringify(data)
+        //return JSON.stringify(data)
+        return JsonTyped.stringifyTyped(data)
     },
     deserialize: (data) => {
         // console.log('deserialize');
-        return JSON.parse(data)
+        //return JSON.parse(data)
+        return JsonTyped.parseTyped(data, types)
     }
 })
+
+/*
+IndexDB storage
+// https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+const createIdbPersister = (idbValidKey: IDBValidKey = "reactQuery") => {
+    return {
+        persistClient: async (client: PersistedClient) => {
+            set(idbValidKey, client)
+        },
+        restoreClient: async () => {
+            return await get<PersistedClient>(idbValidKey)
+        },
+        removeClient: async () => {
+            await del(idbValidKey)
+        },
+    } as Persister
+}
+const persister: Persister = createIdbPersister()
+*/
+
+
 
 export const persistOptions: Omit<PersistQueryClientOptions, 'queryClient'> = {
     persister,

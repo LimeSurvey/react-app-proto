@@ -12,4 +12,13 @@ export default class SideBarLeft {
         }
     }
 
+    public isOpen()
+    {
+        return this.open === true;
+    }
+
+    public toggleOpen()
+    {
+        return this.open = !this.open;
+    }
 }

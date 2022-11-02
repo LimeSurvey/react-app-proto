@@ -5,7 +5,7 @@ import { getSideBarLeft, setSideBarLeft } from './SideBarLeftState'
 export const useQuerySideBarLeft = () => useQuery({
     queryKey: ['sideBarLeft'],
     queryFn: getSideBarLeft,
-    //initialData: new SideBarLeft(),
+    placeholderData: new SideBarLeft(),
     staleTime: Infinity,
     cacheTime: 1000 * 60 * 60,
 })

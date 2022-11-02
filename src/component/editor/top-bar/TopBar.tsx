@@ -33,9 +33,12 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
                         <PlusLg />
                     </Button>
                     <Button
-                        variant={sideBarLeftApi.sideBarLeft?.open ? 'secondary' : 'dark'}
+                        variant={sideBarLeftApi.sideBarLeft?.isOpen() ? 'secondary' : 'dark'}
                         size="sm"
-                        onClick={() => sideBarLeftApi.toggleSideBarLeftVisibility(sideBarLeftApi.sideBarLeft)}
+                        onClick={() =>
+                            sideBarLeftApi.sideBarLeft
+                            && sideBarLeftApi.toggleSideBarLeftVisibility(sideBarLeftApi.sideBarLeft)
+                        }
                     >
                         <ListNested />
                     </Button>

@@ -35,9 +35,9 @@ export const sideBarLeftGetApi = (
         sideBarLeftMutateAsync(options).then(() => sideBarLeftDataRefetch())
 
     // toggled side-bar-left visibility
-    const toggleSideBarLeftVisibility = (origValue: Partial<SideBarLeft>|undefined) => {
-        const openPrev = origValue !== undefined ? origValue.open : true;
-        updateSideBarLeft({open: !openPrev})
+    const toggleSideBarLeftVisibility = (sideBarLeft: SideBarLeft) => {
+        sideBarLeft.toggleOpen()
+        updateSideBarLeft(sideBarLeft)
     }
 
     return {
