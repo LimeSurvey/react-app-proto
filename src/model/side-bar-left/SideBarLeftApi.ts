@@ -26,7 +26,7 @@ export const sideBarLeftGetApi = (
     const {
         sideBarLeft,
         sideBarLeftDataRefetch
-     } = sideBarLeftGetApiReadOnly(useQueryResult);
+    } = sideBarLeftGetApiReadOnly(useQueryResult);
 
     const { mutateAsync: sideBarLeftMutateAsync } = useMutationResult;
 
