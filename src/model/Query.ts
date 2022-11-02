@@ -8,7 +8,7 @@ import {
 //import { get, set, del } from 'idb-keyval'
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 import { JsonTyped } from './json-typed'
-import types from './types'
+import constructors from './constructors'
 
 const msDay = 1000 * 60 * 60;
 const maxAge = msDay * 30;
@@ -41,7 +41,7 @@ const persister: Persister = createSyncStoragePersister({
     deserialize: (data) => {
         // console.log('deserialize');
         //return JSON.parse(data)
-        return JsonTyped.parseTyped(data, types)
+        return JsonTyped.parseTyped(data, constructors)
     }
 })
 
