@@ -3,7 +3,7 @@ import './SideBarLeft.scss'
 import Collapse from 'react-bootstrap/Collapse'
 import Col from 'react-bootstrap/Col'
 import classNames from 'classnames'
-import { sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
+import { getApi as sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
 import { useQuerySideBarLeft, useMutationSideBarLeft } from '../../../model/side-bar-left/SideBarLeftHook'
 
 function SideBarLeft() {
@@ -11,9 +11,9 @@ function SideBarLeft() {
     const { data: site } = sideBarLeftGetApi(
         useQuerySideBarLeft(),
         useMutationSideBarLeft()
-    );
+    )
 
-    const [ isFullyVisible, setIsFullyVisible ] = useState(site?.open);
+    const [ isFullyVisible, setIsFullyVisible ] = useState(site?.open)
 
     return (
         <Collapse

@@ -8,13 +8,12 @@ import Site from './Site'
  * @param UseMutationResult<Site, unknown, Partial<Site>
  * @returns object
  */
-export const siteGetApi = (
+export const getApi = (
     useQueryResult: UseQueryResult<Site>,
     useMutationResult: UseMutationResult<Site, unknown, Partial<Site>>
 ) => {
-
-    const { data, refetch } = siteGetApiReadOnly(useQueryResult);
-    const { mutateAsync } = useMutationResult;
+    const { data, refetch } = getApiReadOnly(useQueryResult)
+    const { mutateAsync } = useMutationResult
 
     const update = (data: Partial<Site>) =>
         mutateAsync(data).then(() => refetch())
@@ -26,10 +25,10 @@ export const siteGetApi = (
     }
 }
 
-export const siteGetApiReadOnly = (
+export const getApiReadOnly = (
     useQueryResult: UseQueryResult<Site>
 ) => {
-    const { data, refetch } = useQueryResult;
+    const { data, refetch } = useQueryResult
 
     return {
         data,
@@ -37,4 +36,4 @@ export const siteGetApiReadOnly = (
     }
 }
 
-export default siteGetApi
+export default getApi

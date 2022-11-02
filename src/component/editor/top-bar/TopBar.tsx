@@ -11,8 +11,8 @@ import classNames from 'classnames'
 import SettingsForm from '../../editor/settings-form/SettingsForm'
 import { useQuerySiteState } from '../../../model/site/SiteHook'
 import { useQuerySideBarLeft, useMutationSideBarLeft } from '../../../model/side-bar-left/SideBarLeftHook'
-import { sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
-import { siteGetApiReadOnly } from '../../../model/site/SiteApi'
+import { getApi as sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
+import { getApiReadOnly as siteGetApiReadOnly } from '../../../model/site/SiteApi'
 
 
 export type TopBarProps = {siteName?:string}

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import './SettingsForm.scss'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Site from '../../../model/site/Site'
 import { useQuerySiteState, useMutationSiteState } from '../../../model/site/SiteHook'
 import siteGetApi from '../../../model/site/SiteApi'
 

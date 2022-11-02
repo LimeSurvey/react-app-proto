@@ -18,17 +18,16 @@ import SideBarLeft from './SideBarLeft'
  * @param UseMutationResult<SideBarLeft, unknown, Partial<SideBarLeft>>
  * @returns object
  */
-export const sideBarLeftGetApi = (
+export const getApi = (
     useQueryResult: UseQueryResult<SideBarLeft>,
     useMutationResult: UseMutationResult<SideBarLeft, unknown, Partial<SideBarLeft>>
 ) => {
-
     const {
         data,
         refetch
-    } = sideBarLeftGetApiReadOnly(useQueryResult);
+    } = getApiReadOnly(useQueryResult)
 
-    const { mutateAsync } = useMutationResult;
+    const { mutateAsync } = useMutationResult
 
     // update side-bar-left object state
     const update = (options: Partial<SideBarLeft>) =>
@@ -56,10 +55,10 @@ export const sideBarLeftGetApi = (
  * @param DefinedUseQueryResult<SideBarLeft>
  * @returns object
  */
-export const sideBarLeftGetApiReadOnly = (
+export const getApiReadOnly = (
     useQueryResult: UseQueryResult<SideBarLeft>
 ) => {
-    const { data, refetch } = useQueryResult;
+    const { data, refetch } = useQueryResult
 
     return {
         data,
@@ -67,4 +66,4 @@ export const sideBarLeftGetApiReadOnly = (
     }
 }
 
-export default sideBarLeftGetApi
+export default getApi
