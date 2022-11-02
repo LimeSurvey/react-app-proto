@@ -18,8 +18,10 @@
  * or persistence will fail during re-hydration.
  */
 
+import Site from './site/Site';
 import SideBarLeft from './side-bar-left/SideBarLeft';
 
 export default [
-    SideBarLeft
+    SideBarLeft,
+    Site
 ];
