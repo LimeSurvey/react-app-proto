@@ -4,8 +4,8 @@ import './App.scss'
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Router from './Router'
 import { RouterProvider } from 'react-router-dom'
-// @ts-ignore
-import setGlobalVars from 'indexeddbshim/src/node-UnicodeIdentifiers'
+// @ts-ignore - indexDB shim just needs to be included it is never called
+// import setGlobalVars from 'indexeddbshim/src/node-UnicodeIdentifiers'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
 import { queryClient, persistOptions } from './model/Query'
