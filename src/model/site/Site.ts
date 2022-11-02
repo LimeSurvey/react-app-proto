@@ -1,10 +1,10 @@
 
-export default class Site {
+export default class Site
+{
+    public name: string
 
-    name: string
-
-    constructor(data?:Partial<Site>) {
-
+    constructor(data?:Partial<Site>)
+    {
         this.name = ''
 
         if (data) {

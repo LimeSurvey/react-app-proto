@@ -5,7 +5,6 @@ import { getSite, setSite } from './SiteState'
 export const useQuerySiteState = () => useQuery({
     queryKey: ['site'],
     queryFn: getSite,
-    initialData: new Site(),
     cacheTime: Infinity
 })
 

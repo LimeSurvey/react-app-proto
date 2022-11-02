@@ -27,7 +27,7 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
             <Col xs={2} xl={2} className={classNames(
                 'd-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1'
             )}>
-                <span className={classNames('p-2')}>{site.name}</span>
+                <span className={classNames('p-2')}>{site?.name}</span>
                 <span>
                     <Button variant="dark" size="sm" className={classNames('m-1')}>
                         <PlusLg />
