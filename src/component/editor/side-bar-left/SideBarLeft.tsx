@@ -8,16 +8,16 @@ import { useQuerySideBarLeft, useMutationSideBarLeft } from '../../../model/side
 
 function SideBarLeft() {
 
-    const sideBarLeftApi = sideBarLeftGetApi(
+    const { data: site } = sideBarLeftGetApi(
         useQuerySideBarLeft(),
         useMutationSideBarLeft()
     );
 
-    const [ isFullyVisible, setIsFullyVisible ] = useState(true);
+    const [ isFullyVisible, setIsFullyVisible ] = useState(site?.open);
 
     return (
         <Collapse
-            in={sideBarLeftApi.sideBarLeft?.open}
+            in={site?.open}
             dimension="width"
             onEntered={() => {
                 setIsFullyVisible(true)

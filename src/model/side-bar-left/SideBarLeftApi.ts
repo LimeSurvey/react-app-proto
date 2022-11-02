@@ -24,27 +24,27 @@ export const sideBarLeftGetApi = (
 ) => {
 
     const {
-        sideBarLeft,
-        sideBarLeftDataRefetch
+        data,
+        refetch
     } = sideBarLeftGetApiReadOnly(useQueryResult);
 
-    const { mutateAsync: sideBarLeftMutateAsync } = useMutationResult;
+    const { mutateAsync } = useMutationResult;
 
     // update side-bar-left object state
-    const updateSideBarLeft = (options: Partial<SideBarLeft>) =>
-        sideBarLeftMutateAsync(options).then(() => sideBarLeftDataRefetch())
+    const update = (options: Partial<SideBarLeft>) =>
+        mutateAsync(options).then(() => refetch())
 
     // toggled side-bar-left visibility
-    const toggleSideBarLeftVisibility = (sideBarLeft: SideBarLeft) => {
+    const toggleVisibility = (sideBarLeft: SideBarLeft) => {
         sideBarLeft.toggleOpen()
-        updateSideBarLeft(sideBarLeft)
+        update(sideBarLeft)
     }
 
     return {
-        sideBarLeft,
-        sideBarLeftDataRefetch,
-        updateSideBarLeft,
-        toggleSideBarLeftVisibility
+        data,
+        refetch,
+        update,
+        toggleVisibility
     }
 }
 
@@ -59,12 +59,11 @@ export const sideBarLeftGetApi = (
 export const sideBarLeftGetApiReadOnly = (
     useQueryResult: UseQueryResult<SideBarLeft>
 ) => {
-    // returned data from
-    const { data: sideBarLeft, refetch: sideBarLeftDataRefetch } = useQueryResult;
+    const { data, refetch } = useQueryResult;
 
     return {
-        sideBarLeft,
-        sideBarLeftDataRefetch
+        data,
+        refetch
     }
 }
 
