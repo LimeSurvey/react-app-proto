@@ -17,7 +17,7 @@ function SideBarLeft() {
 
     return (
         <Collapse
-            in={sideBarLeftApi.sideBarLeft.open}
+            in={sideBarLeftApi.sideBarLeft?.open}
             dimension="width"
             onEntered={() => {
                 setIsFullyVisible(true)

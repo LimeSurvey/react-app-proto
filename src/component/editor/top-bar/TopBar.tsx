@@ -33,7 +33,7 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
                         <PlusLg />
                     </Button>
                     <Button
-                        variant={sideBarLeftApi.sideBarLeft.open ? 'secondary' : 'dark'}
+                        variant={sideBarLeftApi.sideBarLeft?.open ? 'secondary' : 'dark'}
                         size="sm"
                         onClick={() => sideBarLeftApi.toggleSideBarLeftVisibility(sideBarLeftApi.sideBarLeft)}
                     >

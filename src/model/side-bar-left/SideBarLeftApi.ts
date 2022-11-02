@@ -1,4 +1,4 @@
-import { DefinedUseQueryResult, UseMutationResult } from '@tanstack/react-query'
+import { UseQueryResult, UseMutationResult } from '@tanstack/react-query'
 import SideBarLeft from './SideBarLeft'
 
 /**
@@ -15,12 +15,12 @@ import SideBarLeft from './SideBarLeft'
  * react-component. For this reason, we invoke the hooks in the in react-component
  * and immediately pass them to this getActions() function.
  *
- * @param DefinedUseQueryResult<SideBarLeft>,
+ * @param UseQueryResult<SideBarLeft>,
  * @param UseMutationResult<SideBarLeft, unknown, Partial<SideBarLeft>>
  * @returns object
  */
 export const sideBarLeftGetApi = (
-    useQueryResult: DefinedUseQueryResult<SideBarLeft>,
+    useQueryResult: UseQueryResult<SideBarLeft>,
     useMutationResult: UseMutationResult<SideBarLeft, unknown, Partial<SideBarLeft>>
 ) => {
 
@@ -29,11 +29,11 @@ export const sideBarLeftGetApi = (
         sideBarLeftDataRefetch
      } = sideBarLeftGetApiReadOnly(useQueryResult);
 
-    const { mutateAsync: sideBarLeftMutateSync } = useMutationResult;
+    const { mutateAsync: sideBarLeftMutateAsync } = useMutationResult;
 
     // update side-bar-left object state
     const updateSideBarLeft = (options: Partial<SideBarLeft>) =>
-        sideBarLeftMutateSync(options).then(() => sideBarLeftDataRefetch())
+        sideBarLeftMutateAsync(options).then(() => sideBarLeftDataRefetch())
 
     // toggled side-bar-left visibility
     const toggleSideBarLeftVisibility = (origValue: Partial<SideBarLeft>|undefined) => {
@@ -58,7 +58,7 @@ export const sideBarLeftGetApi = (
  * @returns object
  */
 export const sideBarLeftGetApiReadOnly = (
-    useQueryResult: DefinedUseQueryResult<SideBarLeft>
+    useQueryResult: UseQueryResult<SideBarLeft>
 ) => {
     // returned data from
     const { data: sideBarLeft, refetch: sideBarLeftDataRefetch } = useQueryResult;
