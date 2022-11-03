@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './SettingsForm.scss'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { useQuerySiteState, useMutationSiteState } from '../../../model/site/SiteHook'
+import { useQuerySite, useMutationSite } from '../../../model/site/SiteHook'
 import siteGetApi from '../../../model/site/SiteApi'
 
 export const SettingsForm: React.FC = () => {
@@ -11,8 +11,8 @@ export const SettingsForm: React.FC = () => {
         data: site,
         update: updateSite
     } = siteGetApi(
-        useQuerySiteState(),
-        useMutationSiteState()
+        useQuerySite(),
+        useMutationSite()
     )
 
     const [ siteName, setSiteName ] = useState(site?.name)

@@ -10,12 +10,13 @@ import SideBarLeft from './SideBarLeft'
 // Initialise local state
 let sideBarLeft = new SideBarLeft({open: true})
 
-export const getSideBarLeft = () => {
+export const getSideBarLeft = (): SideBarLeft => {
     console.log('getSideBarLeft')
     return sideBarLeft
 }
 
-export const setSideBarLeft = (newData:Partial<SideBarLeft>) => {
+export const setSideBarLeft = (newData: Partial<SideBarLeft>): SideBarLeft => {
     console.log('setSideBarLeft')
     sideBarLeft = new SideBarLeft({...sideBarLeft, ...newData})
+    return sideBarLeft;
 }

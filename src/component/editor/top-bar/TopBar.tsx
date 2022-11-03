@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './TopBar.scss'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -9,7 +9,7 @@ import Popover from 'react-bootstrap/Popover';
 import * as Icon from 'react-bootstrap-icons'
 import classNames from 'classnames'
 import SettingsForm from '../../editor/settings-form/SettingsForm'
-import { useQuerySiteState } from '../../../model/site/SiteHook'
+import { useQuerySite } from '../../../model/site/SiteHook'
 import { useQuerySideBarLeft, useMutationSideBarLeft } from '../../../model/side-bar-left/SideBarLeftHook'
 import { getApi as sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
 import { getApiReadOnly as siteGetApiReadOnly } from '../../../model/site/SiteApi'
@@ -25,7 +25,7 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
     );
 
     const { data: site } = siteGetApiReadOnly(
-        useQuerySiteState()
+        useQuerySite()
     );
 
     const settingsForm = (

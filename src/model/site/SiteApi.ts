@@ -13,10 +13,9 @@ export const getApi = (
     useMutationResult: UseMutationResult<Site, unknown, Partial<Site>>
 ) => {
     const { data, refetch } = getApiReadOnly(useQueryResult)
-    const { mutateAsync } = useMutationResult
+    const { mutate } = useMutationResult
 
-    const update = (data: Partial<Site>) =>
-        mutateAsync(data).then(() => refetch())
+    const update = (data: Partial<Site>) => mutate(data)
 
     return {
         data,

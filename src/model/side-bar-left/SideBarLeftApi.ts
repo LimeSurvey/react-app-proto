@@ -27,11 +27,10 @@ export const getApi = (
         refetch
     } = getApiReadOnly(useQueryResult)
 
-    const { mutateAsync } = useMutationResult
+    const { mutate } = useMutationResult
 
     // update side-bar-left object state
-    const update = (options: Partial<SideBarLeft>) =>
-        mutateAsync(options).then(() => refetch())
+    const update = (options: Partial<SideBarLeft>) => mutate(options)
 
     // toggled side-bar-left visibility
     const toggleVisibility = (sideBarLeft: SideBarLeft) => {
