@@ -3,15 +3,11 @@ import './SideBarLeft.scss'
 import Collapse from 'react-bootstrap/Collapse'
 import Col from 'react-bootstrap/Col'
 import classNames from 'classnames'
-import { getApi as sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
-import { useQuerySideBarLeft, useMutationSideBarLeft } from '../../../model/side-bar-left/SideBarLeftHook'
+import { useApi as useSideBarLeftApi } from '../../../model/side-bar-left/SideBarLeftUseApi'
 
 function SideBarLeft() {
 
-    const { data: site } = sideBarLeftGetApi(
-        useQuerySideBarLeft(),
-        useMutationSideBarLeft()
-    )
+    const { data: site } = useSideBarLeftApi();
 
     const [ isFullyVisible, setIsFullyVisible ] = useState(site?.open)
 

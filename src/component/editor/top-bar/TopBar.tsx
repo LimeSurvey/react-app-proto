@@ -9,24 +9,17 @@ import Popover from 'react-bootstrap/Popover';
 import * as Icon from 'react-bootstrap-icons'
 import classNames from 'classnames'
 import SettingsForm from '../../editor/settings-form/SettingsForm'
-import { useQuerySite } from '../../../model/site/SiteHook'
-import { useQuerySideBarLeft, useMutationSideBarLeft } from '../../../model/side-bar-left/SideBarLeftHook'
-import { getApi as sideBarLeftGetApi } from '../../../model/side-bar-left/SideBarLeftApi'
-import { getApiReadOnly as siteGetApiReadOnly } from '../../../model/site/SiteApi'
+import { useApi as useSideBarLeftApi } from '../../../model/side-bar-left/SideBarLeftUseApi'
+import { useApi as useSiteApi } from '../../../model/site/SiteUseApi'
 
 
 export type TopBarProps = {siteName?:string}
 
 export const TopBar: React.FC<TopBarProps> = (props) => {
 
-    const sideBarLeftApi = sideBarLeftGetApi(
-        useQuerySideBarLeft(),
-        useMutationSideBarLeft()
-    );
+    const sideBarLeftApi = useSideBarLeftApi();
 
-    const { data: site } = siteGetApiReadOnly(
-        useQuerySite()
-    );
+    const { data: site } = useSiteApi();
 
     const settingsForm = (
         <Popover id="settings-popover">
@@ -51,8 +44,7 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
                         variant={sideBarLeftApi.data?.isOpen() ? 'secondary' : 'dark'}
                         size="sm"
                         onClick={() =>
-                            sideBarLeftApi.data
-                            && sideBarLeftApi.toggleVisibility(sideBarLeftApi.data)
+                           sideBarLeftApi.toggleVisibility()
                         }
                     >
                         <Icon.ListNested />
