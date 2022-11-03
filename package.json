@@ -40,7 +40,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "mock-api": "npx json-server --port 4000 --watch mock-api.json"
+    "mock-api": "npx json-server --port 4000 --watch ./data/mock-api.json"
   },
   "eslintConfig": {
     "extends": [
