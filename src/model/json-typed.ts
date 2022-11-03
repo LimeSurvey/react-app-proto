@@ -22,12 +22,12 @@ export const reviverStandard = function (value, type) {
 	if (Array.isArray(value)) {
 		return new type(...value);
 	} else if (
-		valueType == 'number'
-		|| valueType == 'string'
+		valueType === 'number'
+		|| valueType === 'string'
 	) {
 		return new type(value);
 	} else {
-		return Object.assign(new type, value);
+		return Object.assign(new type(), value);
 	}
 };
 
@@ -46,7 +46,7 @@ export class JsonTyped {
 						'String',
 						'Number',
 						'Boolean'
-					].includes(alias) == false
+					].includes(alias) === false
 				) {
 					value = value
 						&& typeof value.toJsonTyped == 'function'
