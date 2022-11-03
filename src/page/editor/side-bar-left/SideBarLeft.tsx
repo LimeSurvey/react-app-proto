@@ -3,7 +3,7 @@ import './SideBarLeft.scss'
 import Collapse from 'react-bootstrap/Collapse'
 import Col from 'react-bootstrap/Col'
 import classNames from 'classnames'
-import { useApi as useSideBarLeftApi } from '../../../model/side-bar-left/SideBarLeftUseApi'
+import { useApi as useSideBarLeftApi } from '../model/SideBarLeftUseApi'
 
 function SideBarLeft() {
 

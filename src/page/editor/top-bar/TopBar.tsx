@@ -9,7 +9,7 @@ import Popover from 'react-bootstrap/Popover';
 import * as Icon from 'react-bootstrap-icons'
 import classNames from 'classnames'
 import SettingsForm from '../../editor/settings-form/SettingsForm'
-import { useApi as useSideBarLeftApi } from '../../../model/side-bar-left/SideBarLeftUseApi'
+import { useApi as useSideBarLeftApi } from '../model/SideBarLeftUseApi'
 import { useApi as useSiteApi } from '../../../model/site/SiteUseApi'
 
 

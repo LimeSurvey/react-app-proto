@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { queryClient } from '../Query'
+import { queryClient } from '../../../model/Query'
 import SideBarLeft from './SideBarLeft'
 
 const queryKey = 'sideBarLeft'

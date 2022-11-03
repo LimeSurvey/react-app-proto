@@ -20,7 +20,7 @@
 
 
 import Site from './site/Site';
-import SideBarLeft from './side-bar-left/SideBarLeft';
+import SideBarLeft from './../page/editor/model/SideBarLeft';
 
 // eslint-disable-next-line
 export default [
