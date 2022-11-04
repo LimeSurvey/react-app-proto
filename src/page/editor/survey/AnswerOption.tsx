@@ -1,7 +1,7 @@
 import React from 'react'
 
 import classNames from 'classnames'
-import AnswerOption from '../../../model/survey/AnswerOption'
+import AnswerOption from '../model/survey/AnswerOption'
 
 function AnswerOptionView(props: { answerOption: AnswerOption }) {
 

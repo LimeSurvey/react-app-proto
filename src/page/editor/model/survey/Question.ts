@@ -1,6 +1,5 @@
-
-import L10n from '../l10n/L10n'
-import AnswerOption from '../survey/AnswerOption'
+import L10n from '../../../../model/l10n/L10n'
+import AnswerOption from './AnswerOption'
 
 export class Question
 {

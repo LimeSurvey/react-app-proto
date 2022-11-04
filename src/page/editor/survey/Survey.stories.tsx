@@ -11,14 +11,8 @@ export default {
   component: Survey,
 } as ComponentMeta<typeof Survey>;
 
-const survey = {
-  id: 1,
-  title: { en: 'Test' },
-  questionGroups: []
-};
-
 export const Basic: ComponentStory<typeof Survey> = () => (
     <Container id="container" fluid>
-    <Survey survey={survey}/>
+    <Survey />
     </Container>
 );

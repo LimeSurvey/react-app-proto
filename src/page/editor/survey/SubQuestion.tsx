@@ -1,7 +1,7 @@
 import React from 'react'
 
 import classNames from 'classnames'
-import SubQuestionType from '../../../model/survey/SubQuestion'
+import SubQuestionType from '../model/survey/SubQuestion'
 
 function SubQuestion(props: { subQuestion: SubQuestionType, children?: React.ReactNode }) {
 

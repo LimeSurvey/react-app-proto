@@ -1,5 +1,5 @@
 
-import L10n from '../l10n/L10n'
+import L10n from '../../../../model/l10n/L10n'
 
 export class AnswerOption
 {
