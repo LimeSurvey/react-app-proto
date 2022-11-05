@@ -13,7 +13,6 @@ export function QuestionGroup(props: { questionGroup: QuestionGroupType, childre
 
     return (
         <Card id={'question-group-' + id} className={classNames(
-            'justify-content-center',
             'mb-1'
         )}>
             <Card.Header>

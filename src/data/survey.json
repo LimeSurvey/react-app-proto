@@ -1,6 +1,9 @@
 {
     "id": 1,
-    "title": "Test Survey 1",
+    "title": {
+        "en": "Test title 1",
+        "fr": "La baguette"
+    },
     "questionGroups": [
         {
             "id": 1,

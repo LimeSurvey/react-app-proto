@@ -1,6 +1,6 @@
 import React from 'react'
-import ListGroup from 'react-bootstrap/ListGroup';
 import classNames from 'classnames'
+import ListGroup from 'react-bootstrap/ListGroup';
 import Question from '../model/survey/Question'
 import TextEditableInline from './../../../component/TextEditableInline/TextEditableInline'
 
@@ -14,13 +14,15 @@ function QuestionView(props: { question: Question, children?: React.ReactNode })
     return (
         <ListGroup.Item id={'question-' + id} className={classNames(
             'justify-content-center',
-            'm-1'
+            'mb-1'
         )}>
-            <div>
+            <div className={classNames(
+                'mb-1'
+            )}>
                 <TextEditableInline defaultValue={name} />
             </div>
             <div style={{ opacity: 0.5, fontSize: '80%' }}>
-                <TextEditableInline defaultValue={helpText} />
+                <TextEditableInline defaultValue={helpText} size="sm" />
             </div>
         </ListGroup.Item>
     )

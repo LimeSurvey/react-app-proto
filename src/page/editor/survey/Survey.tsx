@@ -18,8 +18,6 @@ export function Survey() {
     const { data: survey } = surveyUseApi();
     const { questionGroups } = survey ?? {};
 
-    console.log({ survey })
-
     const title = survey && survey.title && survey.title['en'] ? survey.title['en'] : ''
 
     const questionGroupsView = questionGroups ? questionGroups.map(
@@ -30,12 +28,11 @@ export function Survey() {
     return survey ? (
         <Col
             className={classNames(
-                'survey',
-                'justify-content-center',
+                'survey'
             )}>
             <>
                 <h2 className={classNames('mt-4', 'mb-4')}>
-                    <TextEditableInline defaultValue={title} />
+                    <TextEditableInline size="lg" defaultValue={title} />
                 </h2>
                 {questionGroupsView}
             </>
