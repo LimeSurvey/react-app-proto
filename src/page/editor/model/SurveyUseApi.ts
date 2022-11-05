@@ -82,7 +82,6 @@ export const useApi = () => {
     const { data, refetch } = useQuery({
         queryKey: [queryKey],
         queryFn: () => surveyInit,
-        placeholderData: new Survey(),
         staleTime: Infinity,
         cacheTime: Infinity
     })

@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import classNames from 'classnames'
 import QuestionGroupType from '../model/survey/QuestionGroup'
+import TextEditableInline from './../../../component/TextEditableInline/TextEditableInline'
 
 export function QuestionGroup(props: { questionGroup: QuestionGroupType, children?: React.ReactNode }) {
 
@@ -13,9 +14,11 @@ export function QuestionGroup(props: { questionGroup: QuestionGroupType, childre
     return (
         <Card id={'question-group-' + id} className={classNames(
             'justify-content-center',
-            'm-1'
+            'mb-1'
         )}>
-            <Card.Header>{name}</Card.Header>
+            <Card.Header>
+                <TextEditableInline defaultValue={name} />
+            </Card.Header>
             <ListGroup variant="flush">
                 {props.children}
             </ListGroup>
