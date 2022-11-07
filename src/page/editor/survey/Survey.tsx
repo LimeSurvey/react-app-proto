@@ -13,7 +13,7 @@ import { useApi as surveyUseApi } from '../model/SurveyUseApi'
 
 export function Survey() {
 
-    const { data: survey, updateTitle } = surveyUseApi();
+    const { survey, updateTitle } = surveyUseApi();
     const { questionGroups } = survey ?? {};
 
     const title = survey && survey.title && survey.title['en'] ? survey.title['en'] : ''

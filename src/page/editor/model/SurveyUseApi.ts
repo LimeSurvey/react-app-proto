@@ -25,10 +25,9 @@ export const useApi = () => {
     }
 
     return {
-        data: survey,
+        survey,
         refetch,
         update,
-
         updateQuestionGroup: (id: number, newData: Partial<QuestionGroup>) => {
             if (survey) {
                 const questionGroup = survey.getQuestionGroup(id)
