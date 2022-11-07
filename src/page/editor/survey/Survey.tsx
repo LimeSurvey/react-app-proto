@@ -16,7 +16,7 @@ export function Survey() {
     const { survey, updateTitle } = surveyUseApi();
     const { questionGroups } = survey ?? {};
 
-    const title = survey && survey.title && survey.title['en'] ? survey.title['en'] : ''
+    const titleText = survey && survey.title && survey.title['en'] ? survey.title['en'] : ''
 
     const questionGroupsView = questionGroups ? questionGroups.map(
         (questionGroup, x) => renderQuestionGroup(questionGroup, x)
@@ -31,7 +31,7 @@ export function Survey() {
                 <h2 className={classNames('mt-4', 'mb-4')}>
                     <TextEditableInline
                         size="lg"
-                        defaultValue={title}
+                        defaultValue={titleText}
                         onSave={value =>  updateTitle(value)}
                     />
                 </h2>
