@@ -13,7 +13,7 @@ import { useApi as surveyUseApi } from '../model/SurveyUseApi'
 
 export function Survey() {
 
-    const { data: survey, update: updateSurvey } = surveyUseApi();
+    const { data: survey, updateTitle } = surveyUseApi();
     const { questionGroups } = survey ?? {};
 
     const title = survey && survey.title && survey.title['en'] ? survey.title['en'] : ''
@@ -32,9 +32,7 @@ export function Survey() {
                     <TextEditableInline
                         size="lg"
                         defaultValue={title}
-                        onSave={value => {
-                            updateSurvey({ title: {en: value} })
-                        }}
+                        onSave={value =>  updateTitle(value)}
                     />
                 </h2>
                 {questionGroupsView}

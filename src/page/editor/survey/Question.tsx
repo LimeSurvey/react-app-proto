@@ -35,7 +35,17 @@ function Question(props: { question: QuestionType, children?: React.ReactNode })
                 />
             </div>
             <div style={{ opacity: 0.5, fontSize: '80%' }}>
-                <TextEditableInline defaultValue={helpText} size="sm" />
+                <TextEditableInline
+                    defaultValue={helpText} size="sm"
+                    onSave={value => {
+                        if (question.id) {
+                            updateQuestion(
+                                question.id,
+                                { helpText: { en: value } }
+                            )
+                        }
+                    }}
+                />
             </div>
         </ListGroup.Item>
     )

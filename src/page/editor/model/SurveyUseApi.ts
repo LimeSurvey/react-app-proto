@@ -24,36 +24,42 @@ export const useApi = () => {
         )
     }
 
-    const updateQuestionGroup = (id: number, newData: Partial<QuestionGroup>) => {
-        if (survey) {
-            const questionGroup = survey.getQuestionGroup(id)
-            if (questionGroup) {
-                survey.updateQuestionGroup(id, newData)
-                update(survey)
-            }
-        }
-    }
-
-    const updateQuestion = (id: number, newData: Partial<Question>) => {
-        if (survey) {
-            const questionGroup = survey.getQuestionGroupByQuestionId(id)
-            if (questionGroup) {
-                const question = questionGroup.getQuestion(id)
-                if (question) {
-                    questionGroup.updateQuestion(id, newData)
-                    survey.updateQuestionGroup(id, questionGroup)
-                    update(survey)
-                }
-            }
-        }
-    }
-
     return {
         data: survey,
         refetch,
         update,
-        updateQuestionGroup,
-        updateQuestion
+
+        updateQuestionGroup: (id: number, newData: Partial<QuestionGroup>) => {
+            if (survey) {
+                const questionGroup = survey.getQuestionGroup(id)
+                if (questionGroup) {
+                    survey.updateQuestionGroup(id, newData)
+                    update(survey)
+                }
+            }
+        },
+
+        updateQuestion: (id: number, newData: Partial<Question>) => {
+            if (survey) {
+                const questionGroup = survey.getQuestionGroupByQuestionId(id)
+                if (questionGroup) {
+                    const question = questionGroup.getQuestion(id)
+                    if (question) {
+                        questionGroup.updateQuestion(id, newData)
+                        survey.updateQuestionGroup(id, questionGroup)
+                        update(survey)
+                    }
+                }
+            }
+        },
+
+        updateTitle: (newTitle: string, lang: string = 'en') => {
+            if (survey) {
+                let title = survey.title ?? {}
+                title[lang] = newTitle;
+                update({ title })
+            }
+        }
     }
 }
 
