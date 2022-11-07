@@ -5,7 +5,9 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
 import { FormControlProps } from 'react-bootstrap/FormControl'
 
-function TextEditableInline(props: FormControlProps) {
+type OnSave = { onSave?: (x: any) => any }
+
+function TextEditableInline(props: FormControlProps & OnSave) {
 
     const defaultValue = props.defaultValue !== undefined ? props.defaultValue : ''
     const [editing, setEditing] = useState(false)
@@ -15,6 +17,9 @@ function TextEditableInline(props: FormControlProps) {
         setEditing(!editing)
     }
 
+    const formControlProps = {...props}
+    delete formControlProps.onSave
+
     return !editing ? (
         <div onDoubleClick={toggle} style={{ cursor: 'pointer' }}>{value}</div>
     ) :
@@ -22,12 +27,20 @@ function TextEditableInline(props: FormControlProps) {
             <InputGroup>
                 <Form.Control
                     type="text"
-                    {...props}
+                    {...formControlProps}
                     defaultValue={value}
-                    onChange={e => setValue(e.target.value)}
+                    onChange={e => {
+                        setValue(e.target.value)
+                        if (props.onSave) {
+                            props.onSave(value)
+                        }
+                    }}
                 />
                 <Button variant="outline-success" onClick={() => {
                     toggle()
+                    if (props.onSave) {
+                        props.onSave(value)
+                    }
                 }}>Save</Button>
                 <Button variant="outline-danger" onClick={() => {
                     setValue(defaultValue)

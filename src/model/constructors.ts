@@ -19,11 +19,19 @@
  */
 
 
-import Site from './site/Site';
-import SideBarLeft from './../page/editor/model/SideBarLeft';
+import Site from './site/Site'
+import SideBarLeft from './../page/editor/model/SideBarLeft'
+import Survey from './../page/editor/model/survey/Survey'
+import QuestionGroup from './../page/editor/model/survey/QuestionGroup'
+import Question from './../page/editor/model/survey/Question'
+import AnswerOption from './../page/editor/model/survey/AnswerOption'
 
 // eslint-disable-next-line
 export default [
     SideBarLeft,
-    Site
+    Site,
+    Survey,
+    QuestionGroup,
+    Question,
+    AnswerOption
 ];

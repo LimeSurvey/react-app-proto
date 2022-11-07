@@ -1,32 +1,59 @@
 import { useQuery } from '@tanstack/react-query'
 import { queryClient } from '../../../model/Query'
-import Survey from './Survey'
-import * as survey from '../../../data/survey.json'
+import Survey from './survey/Survey'
+import QuestionGroup from './survey/QuestionGroup'
+import Question from './survey/Question'
+import * as surveyInitData from '../../../data/survey.json'
 
 const queryKey = 'survey'
 
-const surveyInit = new Survey(survey);
+const surveyInit = new Survey(surveyInitData);
 
 export const useApi = () => {
-    const { data, refetch } = useQuery({
+    const { data: survey, refetch } = useQuery({
         queryKey: [queryKey],
         queryFn: () => surveyInit,
         staleTime: Infinity,
         cacheTime: Infinity
     })
 
-    // update side-bar-left object state
-    const update = (options: Partial<Survey>) => {
+    const update = (newData: Partial<Survey>) => {
         return queryClient.setQueryData(
             [queryKey],
-            new Survey({ ...data, ...options })
+            new Survey({ ...survey, ...newData })
         )
     }
 
+    const updateQuestionGroup = (id: number, newData: Partial<QuestionGroup>) => {
+        if (survey) {
+            const questionGroup = survey.getQuestionGroup(id)
+            if (questionGroup) {
+                survey.updateQuestionGroup(id, newData)
+                update(survey)
+            }
+        }
+    }
+
+    const updateQuestion = (id: number, newData: Partial<Question>) => {
+        if (survey) {
+            const questionGroup = survey.getQuestionGroupByQuestionId(id)
+            if (questionGroup) {
+                const question = questionGroup.getQuestion(id)
+                if (question) {
+                    questionGroup.updateQuestion(id, newData)
+                    survey.updateQuestionGroup(id, questionGroup)
+                    update(survey)
+                }
+            }
+        }
+    }
+
     return {
-        data,
+        data: survey,
         refetch,
-        update
+        update,
+        updateQuestionGroup,
+        updateQuestion
     }
 }
 

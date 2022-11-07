@@ -1,21 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import'./Survey.scss'
 import Col from 'react-bootstrap/Col'
 import classNames from 'classnames'
-import SurveyType from '../model/Survey'
 import QuestionGroupType from '../model/survey/QuestionGroup'
 import QuestionType from '../model/survey/Question'
 import SubQuestionType from '../model/survey/SubQuestion'
 import QuestionGroup from './QuestionGroup'
 import Question from './Question'
 import SubQuestion from './SubQuestion'
-import AnswerOption from './Question'
 import TextEditableInline from './../../../component/TextEditableInline/TextEditableInline'
 import { useApi as surveyUseApi } from '../model/SurveyUseApi'
 
 export function Survey() {
 
-    const { data: survey } = surveyUseApi();
+    const { data: survey, update: updateSurvey } = surveyUseApi();
     const { questionGroups } = survey ?? {};
 
     const title = survey && survey.title && survey.title['en'] ? survey.title['en'] : ''
@@ -24,7 +22,6 @@ export function Survey() {
         (questionGroup, x) => renderQuestionGroup(questionGroup, x)
     ) : []
 
-
     return survey ? (
         <Col
             className={classNames(
@@ -32,7 +29,13 @@ export function Survey() {
             )}>
             <>
                 <h2 className={classNames('mt-4', 'mb-4')}>
-                    <TextEditableInline size="lg" defaultValue={title} />
+                    <TextEditableInline
+                        size="lg"
+                        defaultValue={title}
+                        onSave={value => {
+                            updateSurvey({ title: {en: value} })
+                        }}
+                    />
                 </h2>
                 {questionGroupsView}
             </>
@@ -45,7 +48,11 @@ function renderQuestionGroup(questionGroup: QuestionGroupType, key: number) {
     const { questions } = questionGroup
 
     const questionsView = questions ? questions.map(
-        (question, x) => renderQuestion(question, x)
+        (question, x) => {
+            if (questionGroup.id) {
+                return renderQuestion(question, x)
+            }
+        }
     ) : []
 
     return (
