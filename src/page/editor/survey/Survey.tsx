@@ -47,9 +47,7 @@ function renderQuestionGroup(questionGroup: QuestionGroupType, key: number) {
 
     const questionsView = questions ? questions.map(
         (question, x) => {
-            if (questionGroup.id) {
-                return renderQuestion(question, x)
-            }
+            return renderQuestion(question, x)
         }
     ) : []
 
