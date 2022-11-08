@@ -14,7 +14,9 @@ function TextEditableInline(props: FormControlProps & OnSave) {
     const [value, setValue] = useState(defaultValue)
 
     const toggle = () => {
-        setEditing(!editing)
+        setEditing(currentEditing => {
+            return !currentEditing
+        })
     }
 
     const formControlProps = {...props}
