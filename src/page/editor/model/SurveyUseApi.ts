@@ -1,32 +1,52 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../../model/Query'
+import { lsApi, getObjectData } from '../../../model/axios'
 import Survey from './survey/Survey'
 import QuestionGroup from './survey/QuestionGroup'
 import Question from './survey/Question'
-import * as surveyInitData from '../../../data/survey.json'
 
-const queryKey = 'survey'
+const queryKey = ['survey', 1]
 
-const surveyInit = new Survey(surveyInitData);
+const surveyInit = new Survey()
 
 export const useApi = () => {
-    const { data: survey, refetch } = useQuery({
-        queryKey: [queryKey],
-        queryFn: () => surveyInit,
-        staleTime: Infinity,
-        cacheTime: Infinity
+
+    const query = useQuery({
+        queryKey,
+        queryFn: () =>
+            lsApi.get('/survey/1')
+                .then<Survey>(response => response.data),
+        cacheTime: 5000,
+        staleTime: 5000
+    })
+
+    const survey = query.isSuccess && query.data
+        ? new Survey(query.data)
+        : surveyInit
+
+    const updateMutation = useMutation<Survey>({
+        mutationKey: queryKey,
+        mutationFn: (newSurvey) => {
+            return lsApi.put('/survey/1', newSurvey)
+                .then<Survey>(response => response.data)
+        },
+        onSuccess: (result) => {
+            return queryClient.setQueryData<Survey>(
+                queryKey,
+                new Survey(result)
+            )
+        }
     })
 
     const update = (newData: Partial<Survey>) => {
-        return queryClient.setQueryData(
-            [queryKey],
-            new Survey({ ...survey, ...newData })
+        updateMutation.mutate(
+            getObjectData({...survey, ...newData})
         )
     }
 
     return {
+        surveyQuery: query,
         survey,
-        refetch,
         update,
         updateQuestionGroup: (id: number, newData: Partial<QuestionGroup>) => {
             if (survey) {
@@ -55,7 +75,7 @@ export const useApi = () => {
         updateTitle: (newTitle: string, lang: string = 'en') => {
             if (survey) {
                 let title = survey.title ?? {}
-                title[lang] = newTitle;
+                title[lang] = newTitle
                 update({ title })
             }
         }

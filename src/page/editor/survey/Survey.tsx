@@ -1,6 +1,7 @@
 import React from 'react'
 import'./Survey.scss'
 import Col from 'react-bootstrap/Col'
+import Spinner from 'react-bootstrap/Spinner';
 import classNames from 'classnames'
 import QuestionGroupType from '../model/survey/QuestionGroup'
 import QuestionType from '../model/survey/Question'
@@ -13,32 +14,35 @@ import { useApi as surveyUseApi } from '../model/SurveyUseApi'
 
 export function Survey() {
 
-    const { survey, updateTitle } = surveyUseApi();
-    const { questionGroups } = survey ?? {};
+    const { surveyQuery, survey, updateTitle } = surveyUseApi()
+    const questionGroups: QuestionGroupType[] = survey.questionGroups ?? []
 
-    const titleText = survey && survey.title && survey.title['en'] ? survey.title['en'] : ''
+    const titleText = survey && survey.title && survey.title.en ? survey.title.en : ''
 
     const questionGroupsView = questionGroups ? questionGroups.map(
         (questionGroup, x) => renderQuestionGroup(questionGroup, x)
     ) : []
 
-    return survey ? (
+    return (
         <Col
             className={classNames(
                 'survey'
             )}>
-            <>
-                <h2 className={classNames('mt-4', 'mb-4')}>
-                    <TextEditableInline
-                        size="lg"
-                        defaultValue={titleText}
-                        onSave={value =>  updateTitle(value)}
-                    />
-                </h2>
-                {questionGroupsView}
-            </>
+            {surveyQuery.isLoading ? (
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            ) : null}
+            <h2 className={classNames('mt-4', 'mb-4')}>
+                <TextEditableInline
+                    size="lg"
+                    defaultValue={titleText}
+                    onSave={value => updateTitle(value)}
+                />
+            </h2>
+            {questionGroupsView}
         </Col>
-    ) : null
+    )
 }
 
 function renderQuestionGroup(questionGroup: QuestionGroupType, key: number) {
@@ -47,7 +51,7 @@ function renderQuestionGroup(questionGroup: QuestionGroupType, key: number) {
 
     const questionsView = questions ? questions.map(
         (question, x) => {
-            return renderQuestion(question, x)
+                return renderQuestion(question, x)
         }
     ) : []
 
