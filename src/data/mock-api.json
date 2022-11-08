@@ -5,7 +5,10 @@
     "survey": [
         {
             "id": 1,
-            "title": "Test Survey 1",
+            "title": {
+                "en": "Test Survey 1",
+                "fr": "Test Survey 1"
+            },
             "questionGroups": [
                 {
                     "id": 1,
@@ -30,7 +33,10 @@
                 },
                 {
                     "id": 2,
-                    "name": null,
+                    "title": {
+                        "en": "Question Group 2",
+                        "fr": "La baguette 2"
+                    },
                     "questions": [
                         {
                             "id": 4,
