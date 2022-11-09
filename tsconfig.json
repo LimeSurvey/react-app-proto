@@ -5,7 +5,9 @@
       "dom",
       "dom.iterable",
       "esnext"
+      
     ],
+    "baseUrl": "./src",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
