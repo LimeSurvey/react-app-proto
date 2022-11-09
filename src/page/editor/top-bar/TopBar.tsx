@@ -15,7 +15,7 @@ import { useApi as useSiteApi } from '../../../model/site/SiteUseApi'
 
 export type TopBarProps = {siteName?:string}
 
-export const TopBar: React.FC<TopBarProps> = (props) => {
+export function TopBar(props: TopBarProps) {
 
     const sideBarLeftApi = useSideBarLeftApi();
 

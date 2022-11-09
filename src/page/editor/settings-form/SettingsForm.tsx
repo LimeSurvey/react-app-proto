@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import useApi from '../../../model/site/SiteUseApi'
 
-export const SettingsForm: React.FC = () => {
+export function SettingsForm() {
 
     const {
         data: site,

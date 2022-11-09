@@ -5,9 +5,11 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
 import { FormControlProps } from 'react-bootstrap/FormControl'
 
-type OnSave = { onSave?: (x: any) => any }
+type TextEditableInlineProps =
+    FormControlProps
+    & { onSave?: (x: any) => any }
 
-function TextEditableInline(props: FormControlProps & OnSave) {
+function TextEditableInline(props: TextEditableInlineProps) {
 
     const defaultValue = typeof props.defaultValue == 'string' ? props.defaultValue : ''
     const [editing, setEditing] = useState(false)
