@@ -1,0 +1,89 @@
+{
+  "site": {
+    "name": "Testing"
+  },
+  "survey": [
+    {
+      "id": 1,
+      "title": {
+        "en": "Test Survey 1",
+        "fr": "Test Survey 1"
+      },
+      "questionGroups": [
+        {
+          "id": 1,
+          "name": {
+            "en": "Question Group 12345"
+          },
+          "questions": [
+            {
+              "id": 1,
+              "name": {
+                "en": "Question 1",
+                "fr": "La baguette 1"
+              },
+              "type": "S",
+              "helpText": {
+                "en": "Some help",
+                "fr": "Some baguette"
+              },
+              "answerOptions": [],
+              "subQuestions": []
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": {
+            "en": "Question Group 2",
+            "fr": "La baguette 2"
+          },
+          "questions": [
+            {
+              "id": 4,
+              "name": {
+                "en": "Question 4",
+                "fr": "La baguette 4"
+              },
+              "type": "A",
+              "helpText": null,
+              "answerOptions": [],
+              "subQuestions": [
+                {
+                  "id": 5,
+                  "name": {
+                    "en": "Mo",
+                    "fr": "Mueh"
+                  }
+                },
+                {
+                  "id": 7,
+                  "name": {
+                    "en": "Mo 2",
+                    "fr": "Mueh 2"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 6,
+              "name": null,
+              "type": null,
+              "helpText": {},
+              "answerOptions": [
+                {
+                  "id": 1,
+                  "answer": {
+                    "en": "Male",
+                    "fr": "Le male"
+                  }
+                }
+              ],
+              "subQuestions": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

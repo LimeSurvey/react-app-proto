@@ -7,8 +7,6 @@ import {
 } from '@tanstack/react-query-persist-client'
 //import { get, set, del } from 'idb-keyval'
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
-import { JsonTyped } from './json-typed'
-import constructors from './constructors'
 
 const msDay = 1000 * 60 * 60;
 const maxAge = msDay * 30;
@@ -35,13 +33,11 @@ const persister: Persister = createSyncStoragePersister({
     storage: window.localStorage,
     serialize: (data) => {
         // console.log('serialize');
-        //return JSON.stringify(data)
-        return JsonTyped.stringifyTyped(data)
+        return JSON.stringify(data)
     },
     deserialize: (data) => {
         // console.log('deserialize');
-        //return JSON.parse(data)
-        return JsonTyped.parseTyped(data, constructors)
+        return JSON.parse(data)
     }
 })
 

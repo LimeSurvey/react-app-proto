@@ -8,7 +8,7 @@ import { RouterProvider } from 'react-router-dom'
 // import setGlobalVars from 'indexeddbshim/src/node-UnicodeIdentifiers'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
-import { queryClient, persistOptions } from './model/Query'
+import { queryClient, persistOptions } from './Query'
 
 function App() {
     return (

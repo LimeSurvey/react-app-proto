@@ -9,17 +9,11 @@ import Popover from 'react-bootstrap/Popover';
 import * as Icon from 'react-bootstrap-icons'
 import classNames from 'classnames'
 import SettingsForm from '../../editor/settings-form/SettingsForm'
-import { useApi as useSideBarLeftApi } from '../model/SideBarLeftUseApi'
-import { useApi as useSiteApi } from '../../../model/site/SiteUseApi'
 
 
 export type TopBarProps = {siteName?:string}
 
-export const TopBar: React.FC<TopBarProps> = (props) => {
-
-    const sideBarLeftApi = useSideBarLeftApi();
-
-    const { data: site } = useSiteApi();
+export function TopBar(props: TopBarProps) {
 
     const settingsForm = (
         <Popover id="settings-popover">
@@ -35,17 +29,15 @@ export const TopBar: React.FC<TopBarProps> = (props) => {
             <Col xs={2} xl={2} className={classNames(
                 'd-flex', 'align-items-center', 'justify-content-between', 'p-2' , 'm-1'
             )}>
-                <span className={classNames('p-2')}>{site?.name}</span>
+                <span className={classNames('p-2')}>LimeSurvey</span>
                 <span>
                     <Button variant="dark" size="sm" className={classNames('m-1')}>
                         <Icon.PlusLg />
                     </Button>
                     <Button
-                        variant={sideBarLeftApi.data?.isOpen() ? 'secondary' : 'dark'}
+                        variant={false ? 'secondary' : 'dark'}
                         size="sm"
-                        onClick={() =>
-                           sideBarLeftApi.toggleVisibility()
-                        }
+                        onClick={() => null}
                     >
                         <Icon.ListNested />
                     </Button>
